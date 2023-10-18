@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const User = require('./models/user.model.js');
+
+import User from './models/user.model';
+
 dotenv.config();
 
 mongoose.set('strictQuery', true);
@@ -24,21 +26,21 @@ const connectToDataBase = async () => {
                         username: '@admin',
                         password: 'admin'
                     });
-                };
-
-                newUser.save()
+                    
+                    newUser.save()
                     .then(()=>{
                         console.log(`____________________________
-|     Created Admin user!    |
-+----------------------------+
-| username | admin           |
-| email    | admin@admin.com |
-| password | admin           |
-+____________________________+`);
+                        |     Created Admin user!    |
+                        +----------------------------+
+                        | username | admin           |
+                        | email    | admin@admin.com |
+                        | password | admin           |
+                        +____________________________+`);
                     }).catch(error => {
                         console.error('Erro ao criar o usuário admin: ', error);
                     });
-            })
+                };
+                })
             .catch(error => {
                 console.error('Erro ao buscar usuário: ', error);
             });

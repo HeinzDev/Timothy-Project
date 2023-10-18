@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node server.ts",
     "test": "npm test"
   },
   "author": "",
@@ -15,5 +16,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.3",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
   }
 }

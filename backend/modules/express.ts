@@ -1,10 +1,10 @@
 const { application } = require('express');
 const express = require('express');
-const UserModel = require('../database/models/user.model');
-const GamesModel = require('../database/models/games.model');
-const CommentModel = require('../database/models/comment.model');
 const dotenv = require('dotenv');
 const port = 8080;
+import UserModel from '../database/models/user.model';
+import GamesModel from '../database/models/games.model';
+import CommentModel from '../database/models/comment.model';
 
 const path = require('path');
 
@@ -31,7 +31,7 @@ const verifyToken = (req, res, next) => {
     }
 }
 
-app.get('/verificar-autenticacao', verifyToken, async (req, res) => {
+app.get('/verificar-autenticacao', verifyToken, async (req:any, res:any) => {
     try {
       const userId = req.user.id;
   
@@ -42,7 +42,7 @@ app.get('/verificar-autenticacao', verifyToken, async (req, res) => {
       }
   
       res.json({ loggedIn: true, name: user.name, isAdmin: user.isAdmin });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Erro ao verificar autenticação:', error);
       res.status(500).json({ error: error.message });
     }
@@ -56,61 +56,64 @@ const frontendBuildPath = path.join(__dirname, '../../frontend/build');
 
 //se for SinglePageApp, pegar todas as views e colocar identica a essa abaixo (mudando a rota "/")
 app.use("/static", express.static(path.join(frontendBuildPath, "static")));
-app.get("/", (req, res) => {
-    res.sendFile(path.join(frontendBuildPath, "index.html"));
-});
+app.get("/", (req: any, res: any) => {
+    const indexPath = path.join(frontendBuildPath, "index.html");
+    console.log("Sending index.html from path:", indexPath);
+    res.sendFile(indexPath);
+  });
+  
 
 // GETS
-app.get('/users', async (req,res)=>{
+app.get('/users', async (req:any, res:any)=>{
     try {
         const users = await UserModel.find({});
 
         res.status(200).json(users); 
-    } catch (error) {
+    } catch (error: any) {
         return res.status(500).send(error.message);
     }
 
 });
  
-app.get("/users/:id", async (req, res) =>{
+app.get("/users/:id", async (req:any, res:any) =>{
     try {
         const id = req.params.id;
         const user = await UserModel.findById(id);
 
         return res.status(200).json(user); 
-    } catch (error) {
+    } catch (error: any) {
         return res.status(500).send(error.message);
     }
 });
 
-app.get("/games", async (req,res)=>{
+app.get("/games", async (req:any, res:any)=>{
     try {
         const posts = await GamesModel.find({})
 
         res.status(200).json(posts)
-    } catch (error) {
+    } catch (error: any) {
         return res.status(500).send(error.message);
     }
 })
 
-app.get("/games/:id", async (req,res)=>{
+app.get("/games/:id", async (req:any, res:any)=>{
     try {
         const id = req.params.id;
         const post = await GamesModel.findById(id);
 
         return res.status(200).json(post); 
-    } catch (error) {
+    } catch (error: any) {
         return res.status(500).send(error.message);
     }
 })
 
-app.get("/games/:id/comments", async(req,res)=>{
+app.get("/games/:id/comments", async(req:any, res:any)=>{
     try {
         const postId = req.params.id;
         const comments = await CommentModel.find({ postId: postId });
     
         res.status(200).json(comments);
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).send(error.message);
     }
 })
@@ -118,29 +121,29 @@ app.get("/games/:id/comments", async(req,res)=>{
 // POSTS
 
 // Verificar se o sistema precisa (criar usuários pra gente)
-app.post('/users', async (req,res) =>{
+app.post('/users', async (req:any, res:any) =>{
     try{
         const user = await UserModel.create(req.body);
 
         res.status(201).json(user);
     }
-    catch(error){
+    catch(error: any){
         res.status(500).send(error.message);
     }
 });
 
 
-app.post('/games', async (req,res)=>{
+app.post('/games', async (req:any, res:any)=>{
     try {
         const post = await GamesModel.create(req.body);
 
         res.status(201).json(post);
-    } catch (error) {
+    } catch (error: any) {
         return res.status(500).send(error.message);
     }
 })
 
-app.post('/games/:id/comments', async (req, res) => {
+app.post('/games/:id/comments', async (req:any, res:any) => {
     try {
       const postId = req.params.id;
       const comment = await CommentModel.create({
@@ -149,25 +152,25 @@ app.post('/games/:id/comments', async (req, res) => {
       });
   
       res.status(201).json(comment);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).send(error.message);
     }
 });
 
 // PATCHS
 
-app.patch('/users/:id', async (req, res) =>{
+app.patch('/users/:id', async (req:any, res:any) =>{
     try {
         const id = req.params.id;
         const users = await UserModel.findByIdAndUpdate(id, req.body, {new: true});
 
         res.status(200).json(users);
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).send(error.message);
     }
 })
 
-app.patch('/games/:id', async (req, res) => {
+app.patch('/games/:id', async (req:any, res:any) => {
     try {
       const id = req.params.id;
       const post = await GamesModel.findByIdAndUpdate(id, req.body, { new: true });
@@ -177,12 +180,12 @@ app.patch('/games/:id', async (req, res) => {
       }
   
       res.status(200).json(post);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).send(error.message);
     }
 });
 
-app.patch('/games/:postId/comments/:commentId', async (req, res) => {
+app.patch('/games/:postId/comments/:commentId', async (req:any, res:any) => {
     try {
       const postId = req.params.postId;
       const commentId = req.params.commentId;
@@ -194,43 +197,43 @@ app.patch('/games/:postId/comments/:commentId', async (req, res) => {
       );
   
       res.status(200).json(updatedComment);
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).send(error.message);
     }
   });
 
 // DELETES
 
-app.delete('/users/:id', async (req, res)=>{
+app.delete('/users/:id', async (req:any, res:any)=>{
     try {
         const id = req.params.id;
         const user = await UserModel.findByIdAndRemove(id);
 
         res.status(200).json(user);
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).send(error.message);
     }
 })
 
-app.delete('/games/:id', async (req, res)=>{
+app.delete('/games/:id', async (req:any, res:any)=>{
     try {
         const id = req.params.id;
         const user = await GamesModel.findByIdAndRemove(id);
 
         res.status(200).json(user);
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).send(error.message);
     }
 })
 
-app.delete('/games/:postId/comments/:commentId', async (req, res) => {
+app.delete('/games/:postId/comments/:commentId', async (req:any, res:any) => {
     try {
       const commentId = req.params.commentId;
   
       await CommentModel.findByIdAndRemove(commentId);
   
       res.status(204).send();
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).send(error.message);
     }
 });

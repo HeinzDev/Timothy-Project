@@ -7,6 +7,6 @@ const commentSchema = new mongoose.Schema({
   Comments: Number
 });
 
-const GamesModel = mongoose.model('Comment', commentSchema);
+const GamesModel = mongoose.model('Games', commentSchema);
 
 module.exports = GamesModel;

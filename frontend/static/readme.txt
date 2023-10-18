@@ -1,1 +1,0 @@
-aqui ficam as folders de CSS JS(scripts genericos/externos) e imagens

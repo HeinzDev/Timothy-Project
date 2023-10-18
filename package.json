@@ -1,19 +1,13 @@
 {
-  "name": "timothy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm test"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.3",
-    "nodemon": "^3.0.1"
-  }
+    "name": "timothy",
+    "version": "1.0.0",
+    "scripts": {
+        "start-backend": "cd backend && npm start",
+        "start-frontend": "cd frontend && npm start",
+        "install-all": "cd backend && npm install && cd ../frontend && npm install",
+        "build": "cd frontend && npm run build"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1"
+    }
 }

@@ -2,13 +2,14 @@ const { application } = require('express');
 const express = require('express');
 const UserModel = require('../database/models/user.model');
 const GamesModel = require('../database/models/games.model');
-const CommentModel = require('../database/models/comment.model')
+const CommentModel = require('../database/models/comment.model');
+const dotenv = require('dotenv');
 const port = 8080;
+
+const path = require('path');
 
 const app = express();
 app.use(express.json());
-
-const connectToDataBase = require('../database/connect');
 
 dotenv.config();
 
@@ -50,13 +51,14 @@ app.get('/verificar-autenticacao', verifyToken, async (req, res) => {
   */
 
 
-app.use("static", express.static(path.resolve(__dirname, "frontend", "static")));
+
+const frontendBuildPath = path.join(__dirname, '../../frontend/build');
 
 //se for SinglePageApp, pegar todas as views e colocar identica a essa abaixo (mudando a rota "/")
-app.get("/", (req,res)=>{
-    res.sendFile(path.resolve(__dirname, "frontend", "index.html"));
-})
-
+app.use("/static", express.static(path.join(frontendBuildPath, "static")));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
+});
 
 // GETS
 app.get('/users', async (req,res)=>{

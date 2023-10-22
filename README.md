@@ -10,3 +10,9 @@ Functional react app with an database API
 `npm run build` builds the frontend project.
 
 `npm run start-backend` starts the backend with the frontend serve in "localhost:8080/". Its important to mention that the front end will only works if you build it first.
+
+# Deploy
+
+**Render** : [onrender.timothy-project.app](https://timothy-project.onrender.com)
+
+**Vercel** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)

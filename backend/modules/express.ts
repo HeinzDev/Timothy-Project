@@ -50,7 +50,7 @@ app.get('/verificar-autenticacao', verifyToken, async (req:any, res:any) => {
 
   */
 
-const frontendBuildPath = path.join(__dirname, '../../frontend/dist');
+const frontendBuildPath = path.join(__dirname, '../../frontend/build');
 
 //se for SinglePageApp, pegar todas as views e colocar identica a essa abaixo (mudando a rota "/")
 app.use('/static', express.static(path.join(frontendBuildPath, 'static')));

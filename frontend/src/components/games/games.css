@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #444444;
+    width: 80%;
+    min-height: 20%;
+    margin: 10%;
+    border-radius: 20px;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+
+.games-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+.item {
+    background-color: #555555;
+    min-width: 200px;
+    max-width: 230px;
+    min-height: 200px;
+    margin: 10px;
+    border-radius: 8px;
+    transition: .4s ease;
+    padding: 2rem;
+    aspect-ratio: 9/12;
+}
+
+.item:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+

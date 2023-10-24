@@ -1,0 +1,22 @@
+.card {
+    width: 90%;
+    
+    overflow: hidden;
+    border-radius: 1rem;
+    position: relative;
+    border: 5px solid white;
+    transition: .4 ease-out;
+    box-shadow: 10px 20px 15px 2px rgba(0, 0, 0, 0.0);
+    aspect-ratio: 9/12;
+    margin: 0% 5%;
+}
+.card:hover {
+    z-index: 100;
+    box-shadow: 10px 20px 15px 2px rgba(0, 0, 0, 0.4);
+}
+.card-media {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}

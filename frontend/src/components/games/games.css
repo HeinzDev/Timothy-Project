@@ -23,21 +23,23 @@
 }
 
 .item {
+    position: relative;
+    display: flex; flex-direction: column; align-content: flex-start;
     background-color: #555555;
-    min-width: 200px;
-    max-width: 230px;
-    min-height: 200px;
+    width: 12em;
+    min-height: 300px;
     margin: 10px;
     border-radius: 8px;
     transition: .4s ease;
-    padding: 2rem;
+    padding: 2rem 1rem;
     aspect-ratio: 9/12;
+    gap:7px;
 }
 
 .item:hover{
     transform: scale(1.05);
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset
 }
 
 

@@ -1,11 +1,12 @@
 .card {
     width: 90%;
+    position: relative;
     
     overflow: hidden;
     border-radius: 1rem;
     position: relative;
     border: 5px solid white;
-    transition: .4 ease-out;
+    /*transition: .5s ease;*/
     box-shadow: 10px 20px 15px 2px rgba(0, 0, 0, 0.0);
     aspect-ratio: 9/12;
     margin: 0% 5%;
@@ -13,10 +14,28 @@
 .card:hover {
     z-index: 100;
     box-shadow: 10px 20px 15px 2px rgba(0, 0, 0, 0.4);
+    
 }
+
+.card-title {
+    margin: 5px;
+}
+
 .card-media {
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: center;
 }
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0); /* A cor e a opacidade do efeito de luz */
+    pointer-events: none; /* Permite que os eventos do mouse passem através da sobreposição */
+  }
+.card-overlay:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }

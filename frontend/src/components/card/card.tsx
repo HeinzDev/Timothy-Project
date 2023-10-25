@@ -15,16 +15,16 @@ const Card: React.FC<CardProps> = ({ name, img }) => {
     if (card) {
       const cardRect = card.getBoundingClientRect();
 
-      // Calcula a posição do mouse relativa ao centro do card
-      const mouseX = e.clientX - cardRect.left - cardRect.width / 2;
-      const mouseY = e.clientY - cardRect.top - cardRect.height / 2;
+      const mouseX = e.clientX - cardRect.left;
+      const mouseY = e.clientY - cardRect.top;
 
-      // Calcula a rotação com base na posição do mouse
-      const rotationX = (mouseY / cardRect.height) * 40;
-      const rotationY = -(mouseX / cardRect.width) * 40;
+      const rotationX = -(mouseY / cardRect.height) * 20;
+      const rotationY = (mouseX / cardRect.width) * 20;
 
-      // Aplica a rotação ao card
       card.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+      const shadowIntensity = (mouseX / cardRect.width) * (mouseY / cardRect.height);
+      const clampedShadowIntensity = Math.min(1, Math.max(0, shadowIntensity));
+      card.style.boxShadow = `10px 20px 15px 2px rgba(0, 0, 0, ${0.2 + clampedShadowIntensity * 0.3})`;
     }
   };
 
@@ -32,6 +32,7 @@ const Card: React.FC<CardProps> = ({ name, img }) => {
     const card = cardRef.current;
     if (card) {
       card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      card.style.boxShadow = '10px 20px 15px 2px rgba(0, 0, 0, 0)';
     }
   };
 

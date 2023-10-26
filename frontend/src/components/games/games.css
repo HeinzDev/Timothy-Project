@@ -9,6 +9,7 @@
     justify-content: center;
     text-align: center;
     font-size: 30px;
+    border: 1px solid #999;
 }
 
 .games-container {
@@ -34,6 +35,7 @@
     padding: 2rem 1rem;
     aspect-ratio: 9/12;
     gap:7px;
+    overflow: hidden;
 }
 
 .item:hover{
@@ -42,4 +44,82 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset
 }
 
+.item::before{
+  content: "";
+  position: absolute;
+  height: 600px;
+  width: 50px;
+  background : #fff;
 
+  right:400px;
+  bottom: -100px;
+  transform: rotate(37deg);
+  transition: all .5s;
+  opacity: 0.1;
+}
+
+.item:hover::before{
+  right: -220px;
+}
+
+.loading-card {
+  position: relative;
+  background-color: #555555;
+    width: 12em;
+    min-height: 300px;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 2rem 1rem;
+  animation: blinking .6s infinite alternate; /* Exemplo de animação de reflexo */
+  cursor: pointer;
+  overflow: hidden;
+  /* Estilos adicionais a gosto */
+}
+
+.loading-card::before{
+  content: "";
+  position: absolute;
+  height: 600px;
+  width: 50px;
+  background : #fff;
+
+  right:400px;
+  bottom: -100px;
+  transform: rotate(37deg);
+  transition: all .3s;
+  opacity: 0.3;
+  animation: reflection 1s infinite ease;
+}
+
+.loading-card:hover:before {
+  right: -220px;
+  
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*omg idk what i did here but it works*/
+@keyframes reflection {
+  0% {
+    right:400px;
+  }
+  50% {
+    right: -220px;
+  }
+  51%{
+    right:400px;
+  }
+  69% {
+    right: -220px;
+  }
+  70% {
+    right:400px;
+    opacity: 0;
+  }
+}

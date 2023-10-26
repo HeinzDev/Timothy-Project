@@ -2,4 +2,4 @@
   base = "/"
   publish = "frontend/build"
   functions = "netlify/functions"
-  command = "npm run install-all"
+  command = "npm run install-all && npm run build"

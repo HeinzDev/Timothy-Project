@@ -1,0 +1,5 @@
+[build]
+  base = "/"
+  publish = "frontend/build"
+  functions = "netlify/functions"
+  command = "npm run install-all"

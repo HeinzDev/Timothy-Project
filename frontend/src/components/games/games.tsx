@@ -34,7 +34,7 @@ export const Games = () => {
       { name: 'The killer is dead', img: 'https://m.media-amazon.com/images/I/71MW+LprsjL._AC_UF1000,1000_QL80_.jpg' },
       {
         name: 'The Legend of Zelda: Ocarina of time',
-        img: 'https://neverendingrealm.com/wp-content/uploads/2019/02/The-Legend-of-Zelda-Ocarina-of-Time-3D-Box-Art.jpg',
+        img: 'https://images.nintendolife.com/baf49b85ad309/jp.large.jpg',
       },
       {
         name: 'Castlevania: Symphony of the Night',

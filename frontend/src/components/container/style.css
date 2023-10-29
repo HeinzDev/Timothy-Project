@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  color: aliceblue;
+  flex-direction: row;
+  background-color: #282c34;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.main,
+.side-menu {
+  margin: 10px;
+  text-align: center;
+}
+
+.main {
+  width: 100%;
+  transition: 0.5s ease;
+}
+.side-menu {
+  background-color: #281934;
+  display: block;
+  width: 0;
+  border-radius: 20px;
+  transition: width 0.5s;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #999;
+  
+}
+.menu-content {
+  width: 100%;
+
+}

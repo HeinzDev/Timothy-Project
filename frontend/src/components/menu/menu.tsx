@@ -11,12 +11,12 @@ const Menu = () => {
       />
       <h2>Necropill</h2>
 
-      <ul className="little-menu">
-        <li className="options">ir aqui</li>
-        <li className="options">ir ali</li>
-        <li className="options"> nao sei oq</li>
-        <li className="options">nao sei oq la</li>
-      </ul>
+      <div className="user-buttons">
+        <button className="action-buttons">nao sei oq</button>
+        <button className="action-buttons"> nao sei oq la</button>
+        <button className="action-buttons">nao sei</button>
+        <button className="action-buttons">nao</button>
+      </div>
     </div>
   );
 };

@@ -5,13 +5,15 @@ import Menu from '../menu/menu';
 interface ContainerProps {
   mainWidth: string;
   menuWidth: string;
+  borderSize: string;
 }
 
-function Container({ mainWidth, menuWidth }: ContainerProps) {
+function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   const menuStyle = {
     width: menuWidth,
     transition: 'width 0.5s',
     overflow: 'hidden',
+    border: borderSize,
   };
 
   return (

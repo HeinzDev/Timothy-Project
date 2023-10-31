@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import './games.css';
 import GlobalStyles from '../../styled-components/GlobalStyles';
 import Card from '../card/card';
-import axios from 'axios';
+//import axios from 'axios';
 
 interface GameData {
   name: string;
   img: string;
 }
 
-interface User {
+/*interface User {
   id: number;
   username: string;
   email: string;
-}
+}*/
 
 export const Games = () => {
   const [loading, setLoading] = useState<boolean>(true); // Estado de carregamento
   const [data, setData] = useState<GameData[]>([]);
-  const [users, setUsers] = useState<User[]>([]);
+  //  const [users, setUsers] = useState<User[]>([]);
 
   /*useEffect(() => {
     // Função para carregar os usuários via GET

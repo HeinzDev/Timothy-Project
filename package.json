@@ -1,14 +1,13 @@
 {
-    "name": "timothy",
-    "version": "1.0.0",
-    "scripts": {
-        "start-backend": "cd backend && npm start",
-        "start-frontend": "cd frontend && npm start",
-        "install-all": "cd backend && npm install && cd ../frontend && npm install",
-        "build": "cd frontend && npm run build"
-    },
-    "dependencies": {
-        "axios": "^1.6.0",
-        "dotenv": "^16.3.1"
-    }
+  "name": "timothy",
+  "version": "1.0.0",
+  "scripts": {
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
 }

@@ -1,15 +1,12 @@
-.container {
+.main-container {
     display: flex;
     flex-direction: column;
     background-color: #444444;
-    width: 80%;
     min-height: 20%;
-    margin: 10%;
     border-radius: 20px;
     justify-content: center;
     text-align: center;
     font-size: 30px;
-    border: 1px solid #999;
 }
 
 .games-container {

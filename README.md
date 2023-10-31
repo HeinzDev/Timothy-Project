@@ -3,6 +3,7 @@
 Functional react app with an database API
 
 ## Running the project
+
 `npm run install-all` to install both backend and frontend folders.
 
 `npm run start-frontend` initialize the react frontend project only.
@@ -13,8 +14,9 @@ Functional react app with an database API
 
 # Deploy
 
-
 **Vercel** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
+
+**Netlify** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
 
 **Netlify** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
 

@@ -1,0 +1,32 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3em;
+}
+
+.icon {
+    border-radius: 50%;
+    border: 2px solid #999;
+    aspect-ratio: 1/1;
+}
+
+.user-buttons {
+}
+
+.action-buttons {
+    color: aliceblue;
+    cursor: pointer;
+    list-style-type: none;
+    width: 70%;
+    background-color: #9999992d;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 10px;
+    margin: .5em 0;
+
+}
+
+.item {
+
+}

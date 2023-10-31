@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import './card.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 
 interface CardProps {
   name: string;
@@ -37,12 +39,13 @@ const Card: React.FC<CardProps> = ({ name, img }) => {
   };
 
   return (
-    <div className='item'>
+    <div className="item">
       {name}
       <div className="card-overlay"></div>
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <img src={img} alt='game-card' className='card-media' />
+        <img src={img} alt="game-card" className="card-media" />
       </div>
+      <FontAwesomeIcon icon={faCommentAlt} />
     </div>
   );
 };

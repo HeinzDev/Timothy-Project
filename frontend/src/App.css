@@ -1,7 +1,7 @@
 .toggler {
   position: absolute;
   top: 1em;
-  right: 2em;
+  right: 1em;
   color: white;
   border-radius: 8px;
   border: 1px solid white;
@@ -9,7 +9,7 @@
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #581299;
+  background-color: #555;
   cursor: pointer;
   transition: border-color 0.25s;
 }

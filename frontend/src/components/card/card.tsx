@@ -45,7 +45,9 @@ const Card: React.FC<CardProps> = ({ name, img }) => {
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         <img src={img} alt="game-card" className="card-media" />
       </div>
-      <FontAwesomeIcon icon={faCommentAlt} />
+      <div className="icons-div">
+        <FontAwesomeIcon icon={faCommentAlt} />
+      </div>
     </div>
   );
 };

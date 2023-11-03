@@ -6,6 +6,11 @@ import UserModel from '../database/models/user.model';
 import GamesModel from '../database/models/games.model';
 import CommentModel from '../database/models/comment.model';
 
+/*
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+*/
+
 const path = require('path');
 
 const app = express();
@@ -41,7 +46,7 @@ app.get('/verificar-autenticacao', verifyToken, async (req:any, res:any) => {
         return res.status(401).json({ error: 'Usuário não encontrado' });
       }
   
-      res.json({ loggedIn: true, name: user.name, isAdmin: user.isAdmin });
+      res.json({ loggedIn: true, name: user.name });
     } catch (error: any) {
       console.error('Erro ao verificar autenticação:', error);
       res.status(500).json({ error: error.message });
@@ -116,7 +121,6 @@ app.get('/games/:id/comments', async (req: any, res: any) => {
 
 // POSTS
 
-// Verificar se o sistema precisa (criar usuários pra gente)
 app.post('/users', async (req: any, res: any) => {
   try {
     const user = await UserModel.create(req.body);

@@ -4,6 +4,8 @@ interface User extends Document {
   name: string;
   username: string;
   password: string;
+  icon: string;
+  favoriteGames: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema<User>({
@@ -19,6 +21,8 @@ const userSchema = new Schema<User>({
     type: String,
     required: true,
   },
+  icon: String,
+  favoriteGames: [{ type: Schema.Types.ObjectId, ref: 'Games' }],
 });
 
 const UserModel = mongoose.model<User>('User', userSchema);

@@ -1,0 +1,18 @@
+{
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.autofetch": true,
+  "workbench.colorTheme": "OM Theme (Default Dracula Italic)",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.theme": "classic",
+  "material-icon-theme.folders.color": "#6273a6",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "prettier.singleQuote": true,
+  "explorer.compactFolders": false
+}

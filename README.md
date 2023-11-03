@@ -18,6 +18,4 @@ Functional react app with an database API
 
 **Netlify** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
 
-**Netlify** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
-
 **Render** : [timothy-project.netlify.app](https://main--timothy-project.netlify.app)

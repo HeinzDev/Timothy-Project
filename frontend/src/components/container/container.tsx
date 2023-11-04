@@ -1,6 +1,8 @@
 import './style.css';
 import { Games } from '../games/games';
 import Menu from '../menu/menu';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 interface ContainerProps {
   mainWidth: string;
@@ -8,7 +10,15 @@ interface ContainerProps {
   borderSize: string;
 }
 
+interface User {
+  name: string;
+  username: string;
+  icon: string;
+}
+
 function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
+  const loggedInID = '6545c98e1fd42d741a201a43';
+  const [user, setUser] = useState<User | undefined>(undefined);
   const menuStyle = {
     width: menuWidth,
     transition: 'width 0.5s',
@@ -16,15 +26,27 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
     border: borderSize,
   };
 
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get<User>(`http://127.0.0.1:8080/users/${loggedInID}`);
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Erro ao obter os usuários', error);
+      }
+    };
+
+    getUser();
+  }, []);
+
   return (
     <div className="container">
       <div className="main" style={{ width: mainWidth }}>
         <Games />
       </div>
       <div className="side-menu" style={menuStyle}>
-        <div className="menu-content">
-          <Menu />
-        </div>
+        <div className="menu-content">{!!user && <Menu name={user.name} icon={user.icon} />}</div>
       </div>
     </div>
   );

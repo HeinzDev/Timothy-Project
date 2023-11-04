@@ -31,13 +31,14 @@ const connectToDataBase = async () => {
           newUser
             .save()
             .then(() => {
-              console.log(`____________________________
+              console.log(`
+                         ____________________________
                         |     Created Admin user!    |
                         +----------------------------+
-                        | username | admin           |
-                        | email    | admin@admin.com |
+                        | name | admin               |
+                        | username | @admin          |
                         | password | admin           |
-                        +____________________________+`);
+                        |____________________________|`);
             })
             .catch((error) => {
               console.error('Erro ao criar o usuário admin: ', error);

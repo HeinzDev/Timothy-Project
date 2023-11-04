@@ -8,8 +8,14 @@ interface Games extends Document {
 }
 
 const gamesSchema = new Schema<Games>({
-  name: String,
-  image: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
   stars: Number,
   Comments: Number,
 });

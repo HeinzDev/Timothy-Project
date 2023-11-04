@@ -5,10 +5,10 @@ import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 
 interface CardProps {
   name: string;
-  img: string;
+  image: string;
 }
 
-const Card: React.FC<CardProps> = ({ name, img }) => {
+const Card: React.FC<CardProps> = ({ name, image }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -43,7 +43,7 @@ const Card: React.FC<CardProps> = ({ name, img }) => {
       {name}
       <div className="card-overlay"></div>
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <img src={img} alt="game-card" className="card-media" />
+        <img src={image} alt="game-card" className="card-media" />
       </div>
       <div className="icons-div">
         <FontAwesomeIcon icon={faCommentAlt} />

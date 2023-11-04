@@ -26,7 +26,7 @@ export const Games = () => {
 
     getGames(); // Chame a função para obter os jogos quando o componente montar.
     setLoading(false);
-  }, []);
+  }, [games]);
 
   return (
     <div className="main-container">

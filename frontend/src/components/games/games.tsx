@@ -16,9 +16,7 @@ export const Games = () => {
     const getGames = async () => {
       try {
         const response = await axios.get<GameData[]>('http://127.0.0.1:8080/games');
-        console.log(response.data);
         setGames(response.data);
-        console.log('GAME' + games);
       } catch (error) {
         console.error('Erro ao obter os jogos', error);
       }

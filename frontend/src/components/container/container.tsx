@@ -17,7 +17,7 @@ interface User {
 }
 
 function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
-  const loggedInID = '6545c98e1fd42d741a201a43';
+  const loggedInID = '6545b42ff11a4570f6e83281'; // change user: 6545c98e1fd42d741a201a43
   const [user, setUser] = useState<User | undefined>(undefined);
   const menuStyle = {
     width: menuWidth,
@@ -30,7 +30,6 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
     const getUser = async () => {
       try {
         const response = await axios.get<User>(`http://127.0.0.1:8080/users/${loggedInID}`);
-        console.log(response.data);
         setUser(response.data);
       } catch (error) {
         console.error('Erro ao obter os usuários', error);

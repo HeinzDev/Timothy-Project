@@ -9,20 +9,20 @@ interface GameData {
   image: string;
 }
 export const Games = () => {
-  const [loading, setLoading] = useState<boolean>(true); // Estado de carregamento
+  const [loading, setLoading] = useState<boolean>(true);
   const [games, setGames] = useState<GameData[]>([]);
 
   useEffect(() => {
     const getGames = async () => {
       try {
-        const response = await axios.get<GameData[]>('http://127.0.0.1:8080/games');
+        const response = await axios.get<GameData[]>('http://timothy-project-vite.vercel.app/games');
         setGames(response.data);
       } catch (error) {
         console.error('Erro ao obter os jogos', error);
       }
     };
 
-    getGames(); // Chame a função para obter os jogos quando o componente montar.
+    getGames();
     setLoading(false);
   }, [games]);
 

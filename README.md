@@ -14,8 +14,8 @@ Functional react app with an database API
 
 # Deploy
 
-**Vercel** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
+**Vercel** : [vercel.timothy-project.app](https://timothy-project.vercel.app/)
 
-**Netlify** : [vercel.timothy-project.app](https://timothy-project-vite.vercel.app/)
+**Netlify** : [https://timothy-project.netlify.app](https://timothy-project.netlify.app)
 
 **Render** : [timothy-project.netlify.app](https://main--timothy-project.netlify.app)

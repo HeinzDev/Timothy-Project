@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 
 // Importe o arquivo api.ts
-const api = require('./api');
+const api = require('../api/api');
 
 const frontendBuildPath = path.join(__dirname, '../../frontend/build');
 

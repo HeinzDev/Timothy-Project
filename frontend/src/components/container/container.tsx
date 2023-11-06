@@ -17,7 +17,7 @@ interface User {
 }
 
 function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
-  const loggedInID = '6545b42ff11a4570f6e83281'; // change user: 6545c98e1fd42d741a201a43
+  const loggedInID = '6545c98e1fd42d741a201a43'; // change user: 6545c98e1fd42d741a201a43 6545b42ff11a4570f6e83281
   const [user, setUser] = useState<User | undefined>(undefined);
   const menuStyle = {
     width: menuWidth,

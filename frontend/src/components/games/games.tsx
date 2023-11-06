@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './games.css';
 import GlobalStyles from '../../styled-components/GlobalStyles';
 import Card from '../card/card';
-import axios from 'axios';
 
 interface GameData {
   name: string;

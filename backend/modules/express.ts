@@ -14,12 +14,6 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 
-const apiPrefix = '/api';
-app.use(apiPrefix, (req: any, res: any, next: any) => {
-  req.url = req.baseUrl + req.url;
-  next();
-});
-
 app.use((req: any, res: any, next: any) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); // Permite qualquer origem
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -47,7 +41,7 @@ const verifyToken = (req: any, res: any, next: any) => {
   }
 };
 
-app.get('/verificar-autenticacao', verifyToken, async (req: any, res: any) => {
+app.get('/api/verificar-autenticacao', verifyToken, async (req: any, res: any) => {
   try {
     const userId = req.user.id;
 
@@ -64,7 +58,7 @@ app.get('/verificar-autenticacao', verifyToken, async (req: any, res: any) => {
   }
 });
 
-app.post('/login', async (req: any, res: any) => {
+app.post('/api/login', async (req: any, res: any) => {
   const { username, password } = req.body;
 
   try {
@@ -93,7 +87,7 @@ app.get('/', (req: any, res: any) => {
 });
 
 // GETS
-app.get('/users', async (req: any, res: any) => {
+app.get('/api/users', async (req: any, res: any) => {
   try {
     const users = await UserModel.find({});
 
@@ -103,7 +97,7 @@ app.get('/users', async (req: any, res: any) => {
   }
 });
 
-app.get('/users/:id', async (req: any, res: any) => {
+app.get('/api/users/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await UserModel.findById(id);
@@ -114,7 +108,7 @@ app.get('/users/:id', async (req: any, res: any) => {
   }
 });
 
-app.get('/games', async (req: any, res: any) => {
+app.get('/api/games', async (req: any, res: any) => {
   try {
     const posts = await GamesModel.find({});
 
@@ -124,7 +118,7 @@ app.get('/games', async (req: any, res: any) => {
   }
 });
 
-app.get('/games/:id', async (req: any, res: any) => {
+app.get('/api/games/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const post = await GamesModel.findById(id);
@@ -135,7 +129,7 @@ app.get('/games/:id', async (req: any, res: any) => {
   }
 });
 
-app.get('/games/:id/comments', async (req: any, res: any) => {
+app.get('/api/games/:id/comments', async (req: any, res: any) => {
   try {
     const postId = req.params.id;
     const comments = await CommentModel.find({ postId: postId });
@@ -146,7 +140,7 @@ app.get('/games/:id/comments', async (req: any, res: any) => {
   }
 });
 
-app.get('/users/:user/games', async (req: any, res: any) => {
+app.get('/api/users/:user/games', async (req: any, res: any) => {
   const userId = req.params.user;
 
   try {
@@ -163,7 +157,7 @@ app.get('/users/:user/games', async (req: any, res: any) => {
 
 // POSTS
 
-app.post('/users', async (req: any, res: any) => {
+app.post('/api/users', async (req: any, res: any) => {
   try {
     const user = await UserModel.create(req.body);
 
@@ -173,7 +167,7 @@ app.post('/users', async (req: any, res: any) => {
   }
 });
 
-app.post('/games', async (req: any, res: any) => {
+app.post('/api/games', async (req: any, res: any) => {
   try {
     const post = await GamesModel.create(req.body);
 
@@ -183,7 +177,7 @@ app.post('/games', async (req: any, res: any) => {
   }
 });
 
-app.post('/games/:id/comments', async (req: any, res: any) => {
+app.post('/api/games/:id/comments', async (req: any, res: any) => {
   try {
     const postId = req.params.id;
     const comment = await CommentModel.create({
@@ -197,7 +191,7 @@ app.post('/games/:id/comments', async (req: any, res: any) => {
   }
 });
 
-app.post('/users/:user/games/:game/star', async (req: any, res: any) => {
+app.post('/api/users/:user/games/:game/star', async (req: any, res: any) => {
   const userId = req.params.user;
   const gameId = req.params.game;
 
@@ -219,7 +213,7 @@ app.post('/users/:user/games/:game/star', async (req: any, res: any) => {
 
 // PATCHS
 
-app.patch('/users/:id', async (req: any, res: any) => {
+app.patch('/api/users/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const users = await UserModel.findByIdAndUpdate(id, req.body, { new: true });
@@ -230,7 +224,7 @@ app.patch('/users/:id', async (req: any, res: any) => {
   }
 });
 
-app.patch('/games/:id', async (req: any, res: any) => {
+app.patch('/api/games/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const post = await GamesModel.findByIdAndUpdate(id, req.body, { new: true });
@@ -245,7 +239,7 @@ app.patch('/games/:id', async (req: any, res: any) => {
   }
 });
 
-app.patch('/games/:postId/comments/:commentId', async (req: any, res: any) => {
+app.patch('/api/games/:postId/comments/:commentId', async (req: any, res: any) => {
   try {
     const postId = req.params.postId;
     const commentId = req.params.commentId;
@@ -260,7 +254,7 @@ app.patch('/games/:postId/comments/:commentId', async (req: any, res: any) => {
 
 // DELETES
 
-app.delete('/users/:id', async (req: any, res: any) => {
+app.delete('/api/users/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await UserModel.findByIdAndRemove(id);
@@ -271,7 +265,7 @@ app.delete('/users/:id', async (req: any, res: any) => {
   }
 });
 
-app.delete('/games/:id', async (req: any, res: any) => {
+app.delete('/api/games/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await GamesModel.findByIdAndRemove(id);
@@ -282,7 +276,7 @@ app.delete('/games/:id', async (req: any, res: any) => {
   }
 });
 
-app.delete('/games/:postId/comments/:commentId', async (req: any, res: any) => {
+app.delete('/api/games/:postId/comments/:commentId', async (req: any, res: any) => {
   try {
     const commentId = req.params.commentId;
 

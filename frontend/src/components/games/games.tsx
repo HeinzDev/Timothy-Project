@@ -15,16 +15,22 @@ export const Games = () => {
   useEffect(() => {
     const getGames = async () => {
       try {
-        const response = await axios.get<GameData[]>('https://timothy-project.vercel.app/api/games');
-        setGames(response.data);
+        const response = await fetch('/api/games/');
+        if (response.ok) {
+          const data = await response.json();
+          setGames(data);
+        } else {
+          console.error('Erro ao obter os jogos:', response.status, response.statusText);
+        }
       } catch (error) {
-        console.error('Erro ao obter os jogos', error);
+        console.error('Erro ao obter os jogos:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     getGames();
-    setLoading(false);
-  }, [games]);
+  }, []);
 
   return (
     <div className="main-container">

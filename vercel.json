@@ -2,7 +2,11 @@
   "routes": [
     {
       "src": "/api/.*",
-      "dest": "/backend/api/api.ts"
+      "dest": "/backend/api.ts"
+    },
+    {
+      "src": ".*",
+      "dest": "/backend/server.ts"
     }
   ]
 }

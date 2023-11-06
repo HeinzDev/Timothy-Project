@@ -1,3 +1,6 @@
 node_modules
-build 
+/build 
+.env
+/dist
+*.js
 .env

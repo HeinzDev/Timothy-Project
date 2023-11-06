@@ -1,12 +1,12 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/server.ts"
+      "src": "/api/(.*)",
+      "dest": "/backend/server.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/backend/server.ts"
+      "src": ".*",
+      "dest": "/backend/server.ts"
     }
   ]
 }

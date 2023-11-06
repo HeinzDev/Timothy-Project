@@ -29,7 +29,7 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get<User>(`http://127.0.0.1:8080/users/${loggedInID}`);
+        const response = await axios.get<User>(`https://timothy-project.vercel.app/users/${loggedInID}`);
         setUser(response.data);
       } catch (error) {
         console.error('Erro ao obter os usuários', error);

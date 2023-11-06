@@ -1,7 +1,6 @@
 import './style.css';
 import { Games } from '../games/games';
 import Menu from '../menu/menu';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 interface ContainerProps {
@@ -27,16 +26,21 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   };
 
   useEffect(() => {
-    const getUser = async () => {
+    const getUsers = async () => {
       try {
-        const response = await axios.get<User>(`https://timothy-project.vercel.app/api/users/${loggedInID}`);
-        setUser(response.data);
+        const response = await fetch(`/api/users/${loggedInID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          console.error('Erro ao obter os jogos:', response.status, response.statusText);
+        }
       } catch (error) {
-        console.error('Erro ao obter os usuários', error);
+        console.error('Erro ao obter os jogos:', error);
       }
     };
 
-    getUser();
+    getUsers();
   }, []);
 
   return (

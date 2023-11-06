@@ -15,7 +15,7 @@ export const Games = () => {
   useEffect(() => {
     const getGames = async () => {
       try {
-        const response = await axios.get<GameData[]>('https://timothy-project.vercel.app/games');
+        const response = await axios.get<GameData[]>('https://timothy-project.vercel.app/api/games');
         setGames(response.data);
       } catch (error) {
         console.error('Erro ao obter os jogos', error);

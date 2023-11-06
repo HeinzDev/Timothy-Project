@@ -18,4 +18,4 @@ Functional react app with an database API
 
 **Netlify** : [https://timothy-project.netlify.app](https://timothy-project.netlify.app)
 
-**Render** : [timothy-project.netlify.app](https://main--timothy-project.netlify.app)
+**Render** : [https://timothy-project.onrender.com](https://timothy-project.onrender.com)

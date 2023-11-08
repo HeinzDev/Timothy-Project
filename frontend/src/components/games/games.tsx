@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './games.css';
 import GlobalStyles from '../../styled-components/GlobalStyles';
 import Card from '../card/card';
+import axios from 'axios';
 
 interface GameData {
   name: string;
@@ -14,20 +15,15 @@ export const Games = () => {
   useEffect(() => {
     const getGames = async () => {
       try {
-        const response = await fetch('/api/games/');
-        if (response.ok) {
-          const data = await response.json();
-          setGames(data);
-        } else {
-          console.error('Erro ao obter os jogos:', response.status, response.statusText);
-        }
+        const response = await axios.get<GameData[]>(`https://timothy-project.onrender.com/api/games`);
+        setGames(response.data);
       } catch (error) {
-        console.error('Erro ao obter os jogos:', error);
+        setLoading(true);
+        console.log('Erro to get games from the api. Verify');
       } finally {
         setLoading(false);
       }
-    };
-
+    }
     getGames();
   }, []);
 
@@ -37,8 +33,13 @@ export const Games = () => {
       <p className="exo-font">games</p>
       <div className="games-container">
         {loading ? (
-          <div className="loading-card">{}</div>
-        ) : (
+          <>
+            <div className="loading-card">{}</div>
+            <div className="loading-card">{}</div>
+            <div className="loading-card">{}</div>
+            <div className="loading-card">{}</div>
+          </>
+        ) : ( 
           games.map(({ name, image }) => {
             return <Card key={name} name={name} image={image} />;
           })

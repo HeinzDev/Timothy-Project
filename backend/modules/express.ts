@@ -18,7 +18,7 @@ app.use((req: any, res: any, next: any) => {
 
 dotenv.config();
 
-const frontendBuildPath = path.join(__dirname, '../../frontend/build');
+const frontendBuildPath = path.join(__dirname, '../../../frontend/build');
 
 app.use('/static', express.static(path.join(frontendBuildPath, 'static')));
 app.get('/', (req: any, res: any) => {

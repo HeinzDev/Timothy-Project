@@ -29,7 +29,7 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get<User>(`https://timothy-project.vercel.com/api/users/${loggedInID}`);        
+        const response = await axios.get<User>(`https://timothy-project.onrender.com/api/users/${loggedInID}`);        
         setUser(response.data);
       } catch (error) {
         console.error('Erro ao obter os jogos:', error);

@@ -4,8 +4,10 @@ import GlobalStyles from '../../styled-components/GlobalStyles';
 import Card from '../card/card';
 import axios from 'axios';
 import ButtonMenu from '../button-menu/button-menu';
+import { Link } from 'react-router-dom';
 
 interface GameData {
+  _id: number;
   name: string;
   image: string;
 }
@@ -42,8 +44,12 @@ export const Games = () => {
             <div className="loading-card">{}</div>
           </>
         ) : (
-          games.map(({ name, image }) => {
-            return <Card key={name} name={name} image={image} />;
+          games.map(({ name, image, _id }) => {
+            return (
+              <Link to={`/Game/${_id}`} key={_id}>
+                <Card name={name} image={image} />
+              </Link>
+            );
           })
         )}
       </div>

@@ -4,7 +4,7 @@ interface Games extends Document {
   name: string;
   image: string;
   stars: number;
-  Comments: number;
+  comments: number;
 }
 
 const gamesSchema = new Schema<Games>({
@@ -17,7 +17,7 @@ const gamesSchema = new Schema<Games>({
     required: true,
   },
   stars: Number,
-  Comments: Number,
+  comments: Number,
 });
 
 const GamesModel = mongoose.model<Games>('Games', gamesSchema);

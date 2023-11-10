@@ -1,0 +1,22 @@
+  .button-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.action-button {
+  border-radius: 45%; 
+  background-color: #933;
+  width: 5em;
+  height: 5em;
+  color: white;
+  margin: 5px;
+  transition: 0.4s ease;
+}
+
+.action-button:hover {
+    transform: scale(1.1);
+}

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import './card.css';
+import './style.css';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -46,7 +46,9 @@ const Card: React.FC<CardProps> = ({ name, image }) => {
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         <img src={image} alt="game-card" className="card-media" />
       </div>
-      <div className="icons-div"></div>
+      <div className="icons-div">
+        <i className='fa-solid fa-message'></i>
+      </div>
     </div>
   );
 };

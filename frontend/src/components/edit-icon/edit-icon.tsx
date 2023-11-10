@@ -25,11 +25,11 @@ const EditIcon = ({ visible, onClose, user }: GameFormProps) => {
         };
 
         if (token) {
-          const response = await axios.get(`http://localhost:8080/api/users/${user}`, config);
+          const response = await axios.get(`https://timothy-project.onrender.com/api/users/${user}`, config);
           const userData = response.data;
 
           if ('icon' in userData) {
-            await axios.patch(`http://localhost:8080/api/users/${user}`, { icon: iconLink }, config);
+            await axios.patch(`https://timothy-project.onrender.com/api/users/${user}`, { icon: iconLink }, config);
             alert('User icon updated successfully.');
             onClose();
           } else {

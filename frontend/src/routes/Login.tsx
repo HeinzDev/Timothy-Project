@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     axios
-      .post('http://localhost:8080/api/login', loginData)
+      .post('https://timothy-project.onrender.com/api/login', loginData)
       .then((response) => {
         const { token, name, username, _id } = response.data;
         localStorage.setItem('token', token);

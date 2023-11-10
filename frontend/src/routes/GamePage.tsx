@@ -23,7 +23,7 @@ const GamePage = () => {
   useEffect(() => {
     const getGameData = async () => {
       try {
-        const response = await axios.get<GameData>(`http://localhost:8080/api/games/${id}`);
+        const response = await axios.get<GameData>(`https://timothy-project.onrender.com/api/games/${id}`);
         setGameData(response.data);
       } catch (error) {
         console.log(error);

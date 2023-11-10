@@ -11,6 +11,35 @@
     aspect-ratio: 1/1;
 }
 
+.loading-icon {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    position: relative;
+    background-color: #555555;
+    animation: blinking .6s infinite alternate;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .loading-icon::before{
+    content: "";
+    position: absolute;
+    height: 600px;
+    width: 20px;
+    background : #fff;
+  
+    right:400px;
+    bottom: -100px;
+    transform: rotate(37deg);
+    transition: all .3s;
+    opacity: 0.3;
+    animation: reflection 1.3s infinite ease;
+  }
+  
+  .loading-icon::hover:before {
+    right: -220px;
+  }
+
 .action-buttons {
     color: aliceblue;
     cursor: pointer;
@@ -21,5 +50,33 @@
     border-radius: 5px;
     padding: 10px;
     margin: .5em 0;
-
 }
+
+
+@keyframes blinking {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes reflection {
+    0% {
+      right:400px;
+    }
+    50% {
+      right: -220px;
+    }
+    51%{
+      right:400px;
+    }
+    69% {
+      right: -220px;
+    }
+    70% {
+      right:400px;
+      opacity: 0;
+    }
+  }

@@ -19,6 +19,7 @@ interface User {
 function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   const loggedInID = '6545b42ff11a4570f6e83281'; // change user: 6545c98e1fd42d741a201a43 6545b42ff11a4570f6e83281
   const [user, setUser] = useState<User | undefined>(undefined);
+  const [loadedUser, setLoadedUser] = useState<boolean>(false);
   const menuStyle = {
     width: menuWidth,
     transition: 'width 0.5s',
@@ -29,10 +30,13 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   useEffect(() => {
     const getUsers = async () => {
       try {
+        //chamada da api certa
         const response = await axios.get<User>(`https://timothy-project.onrender.com/api/users/${loggedInID}`);
         setUser(response.data);
+        setLoadedUser(false);
       } catch (error) {
         console.error('Erro ao obter os jogos:', error);
+        setLoadedUser(true);
       }
     };
 
@@ -45,7 +49,9 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
         <Games />
       </div>
       <div className="side-menu" style={menuStyle}>
-        <div className="menu-content">{!!user && <Menu name={user.name} icon={user.icon} />}</div>
+        <div className="menu-content">
+          <Menu name={user?.name ?? ''} icon={user?.icon ?? ''} isLoading={loadedUser} />
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,35 @@
+import { useState } from 'react';
 import './style.css';
 
 interface MenuProps {
   name: string;
   icon: string;
+  isLoading: boolean;
 }
 
-const Menu = ({ name, icon }: MenuProps) => {
+const Menu = ({ name, icon, isLoading }: MenuProps) => {
+  const [iconLoading, setIconLoading] = useState(isLoading);
+  console.log(isLoading);
   return (
     <div className="menu">
-      <img className="icon" alt="user-icon" src={icon} />
-      <h2>{name}</h2>
+      {isLoading ? (
+        <>
+          <img className="loading-icon" alt="user-icon" />
+          <h2>...</h2>
+        </>
+      ) : (
+        <>
+          <img className="icon" alt="user-icon" src={icon} />
+          <h2>{name}</h2>
 
-      <div className="user-buttons">
-        <button className="action-buttons">Não sei o que</button>
-        <button className="action-buttons">Não sei o que lá</button>
-        <button className="action-buttons">Não sei</button>
-        <button className="action-buttons">Não</button>
-      </div>
+          <div className="user-buttons">
+            <button className="action-buttons">option 1</button>
+            <button className="action-buttons">option 2</button>
+            <button className="action-buttons">option 3</button>
+            <button className="action-buttons">option 4</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

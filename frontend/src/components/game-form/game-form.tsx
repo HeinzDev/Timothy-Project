@@ -47,11 +47,11 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
   return (
     <div className={`game-form ${visible ? 'show' : ''}`}>
       <div className="form-wrapper">
-        <div className='form-input'>
+        <div className="form-input">
           <div className="close-button" onClick={onClose}>
             <i className="fa-solid fa-x"></i>
           </div>
-          
+
           <label>Game name</label>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
@@ -62,10 +62,11 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
             Submit
           </button>
         </div>
-        {image!='' &&
-        <div className='game-preview'>
-          <Card name={name} image={image}/>
-        </div>}
+        {image != '' && (
+          <div className="game-preview">
+            <Card name={name} image={image} />
+          </div>
+        )}
       </div>
     </div>
   );

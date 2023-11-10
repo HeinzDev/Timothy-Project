@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Container from '../components/container/container';
 import { useAuth } from '../Context/AuthContext';
 
@@ -8,6 +9,13 @@ const Home = () => {
   const [sideBorder, setsideBorder] = useState<string>('0px solid #99999900');
 
   const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+  });
 
   const toggleWidth = () => {
     if (mainWidth === '100%') {

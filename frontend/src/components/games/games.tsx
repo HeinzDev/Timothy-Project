@@ -19,7 +19,7 @@ export const Games = () => {
       setGames(response.data);
     } catch (error) {
       setLoading(true);
-      console.log('Erro to get games from the api');
+      console.log('Error: Failed to get games from the api');
     } finally {
       setLoading(false);
     }

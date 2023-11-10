@@ -9,14 +9,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-app.use(express.json());
+const cors = require('cors');
 
-app.use((req: any, res: any, next: any) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+const corsOptions = {
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
+app.use(express.json());
 
 dotenv.config();
 
@@ -29,13 +33,18 @@ app.get('/', (req: any, res: any) => {
   res.sendFile(indexPath);
 });
 
-/* Autenticação por token (avaliar se é necessario)  */
-
 const verifyToken = (req: any, res: any, next: any) => {
-  const token = req.cookies?.token;
-  console.log('Headers:', req.headers);
-  if (!token) {
+  let token = req.cookies?.token;
+  let headers = req.headers;
+
+  if (!token && !headers.authorization) {
     return res.status(401).json({ error: 'Acesso não autorizado!' });
+  }
+
+  if (!token && headers.authorization) {
+    const authorizationHeader = headers.authorization;
+    const [, tokenFromHeader] = authorizationHeader.split(' ');
+    token = tokenFromHeader;
   }
 
   try {

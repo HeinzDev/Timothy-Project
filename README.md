@@ -1,21 +1,23 @@
 # Timothy-Project
 
-Functional react app with an database API
+This is a project to create an shared list of games to play! To use, first access the [api address](https://timothy-project.onrender.com) to intialize the backend!
 
-## Running the project
+## Running the project locally
 
-`npm run install-all` to install both backend and frontend folders.
+`npm install` on both projects.
 
-`npm run start-frontend` initialize the react frontend project only.
+`npm run build` on both projects.
 
-`npm run build` builds the frontend project.
+`npm run start` on the backend file.
 
-`npm run start-backend` starts the backend with the frontend serve in "localhost:8080/". Its important to mention that the front end will only works if you build it first.
+And it's done!
 
 # Deploy
 
+## API
+**Render (api)** : [timothy-project.onrender.com](https://timothy-project.onrender.com)
+
+## Application
 **Vercel** : [vercel.timothy-project.app](https://timothy-project.vercel.app/)
 
-**Netlify** : [https://timothy-project.netlify.app](https://timothy-project.netlify.app)
-
-**Render** : [https://timothy-project.onrender.com](https://timothy-project.onrender.com)
+**Netlify** : [timothy-project.netlify.app](https://timothy-project.netlify.app)

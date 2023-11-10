@@ -9,12 +9,11 @@ interface MenuProps {
 
 const Menu = ({ name, icon, isLoading }: MenuProps) => {
   const [iconLoading, setIconLoading] = useState(isLoading);
-  console.log(isLoading);
   return (
     <div className="menu">
       {isLoading ? (
         <>
-          <img className="loading-icon" alt="user-icon" />
+          <img className="loading-icon" alt="" />
           <h2>...</h2>
         </>
       ) : (

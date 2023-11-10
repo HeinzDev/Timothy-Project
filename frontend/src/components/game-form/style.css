@@ -18,25 +18,34 @@
   display: flex;
 }
 
-.form-content {
+.form-wrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 3em;
   background-color: #444;
   border: 1px solid #777;
   border-radius: 10px;
   gap: 1em;
+  padding: 2em;
 }
 
-.form-content input {
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1em;
+}
+
+.form-input input {
   background-color: #777;
   border: 5px solid #777;
   border-radius: 8px;
   color: white;
 }
+
+.game-preview
 
 .close-button {
   position: absolute;

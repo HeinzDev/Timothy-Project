@@ -1,6 +1,7 @@
 import './style.css';
 import axios from 'axios';
 import { useState } from 'react';
+import Card from '../card/card';
 
 interface GameFormProps {
   visible: boolean;
@@ -45,19 +46,26 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
 
   return (
     <div className={`game-form ${visible ? 'show' : ''}`}>
-      <div className="form-content">
-        <div className="close-button" onClick={onClose}>
-          <i className="fa-solid fa-x"></i>
+      <div className="form-wrapper">
+        <div className='form-input'>
+          <div className="close-button" onClick={onClose}>
+            <i className="fa-solid fa-x"></i>
+          </div>
+          
+          <label>Game name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+
+          <label>Image link</label>
+          <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
+
+          <button className="submit" onClick={sendGames}>
+            Submit
+          </button>
         </div>
-        <label>Game name</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-
-        <label>Image link</label>
-        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} />
-
-        <button className="submit" onClick={sendGames}>
-          Submit
-        </button>
+        {image!='' &&
+        <div className='game-preview'>
+          <Card name={name} image={image}/>
+        </div>}
       </div>
     </div>
   );

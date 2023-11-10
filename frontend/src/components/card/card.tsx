@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({ name, image }) => {
       {name}
       <div className="card-overlay"></div>
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <img src={image} alt="game-card" className="card-media" />
+        <img src={image} className="card-media" />
       </div>
       <div className="icons-div">
         <i className="fa-solid fa-message"></i>

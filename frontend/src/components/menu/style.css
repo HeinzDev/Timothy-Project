@@ -5,10 +5,59 @@
     padding: 3em;
 }
 
+.hover-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.icon-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
 .icon {
-    border-radius: 50%;
+  border-radius: 50%;
     border: 2px solid #999;
     aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.hover-container::before{
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: black;
+  z-index: 1;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  transition: 1s ease;
+}
+
+.hover-container:hover::before {
+  opacity: .4;  /* Ao passar o mouse, torna-se completamente visível */
+}
+
+.fa-pen {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  opacity: 0;
+  transition: .3s ease;
+  font-size: 1.2em;
+}
+
+.icon-container:hover  .fa-pen{
+  opacity: 1;
 }
 
 .loading-icon {

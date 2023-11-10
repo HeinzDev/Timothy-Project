@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import GamePageCard from '../components/game-page-card/game-page-card';
 
 interface GameData {
   _id: string;
@@ -15,6 +16,10 @@ const GamePage = () => {
   const [gameData, setGameData] = useState<GameData>();
   console.log(id);
 
+  const white = {
+    color: 'white',
+  };
+
   useEffect(() => {
     const getGameData = async () => {
       try {
@@ -26,7 +31,11 @@ const GamePage = () => {
     };
     getGameData();
   }, [id]);
-  return <div></div>;
+  return (
+    <div style={white} className="game-page-container">
+      <GamePageCard name={gameData ? gameData.name : ''} image={gameData ? gameData.image : ''} />
+    </div>
+  );
 };
 
 export default GamePage;

@@ -15,7 +15,7 @@ interface ContainerProps {
 interface User {
   name: string;
   username: string;
-  icon: string;
+  icon: string | null;
 }
 
 function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProps) {
@@ -66,7 +66,13 @@ function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProp
       </div>
       <div className="side-menu" style={menuStyle}>
         <div className="menu-content">
-          <Menu name={user?.name ?? ''} icon={user?.icon ?? ''} isLoading={loadedUser} isLogged={isLogged} />
+          <Menu
+            name={user?.name ?? ''}
+            icon={user?.icon ?? ''}
+            isLoading={loadedUser}
+            isLogged={isLogged}
+            user={_id ?? ''}
+          />
         </div>
       </div>
     </div>

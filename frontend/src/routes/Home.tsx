@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <>
       <button className="toggler" onClick={toggleWidth}>
-        Menu
+        <i className=" fa-solid fa-bars" />
       </button>
       {isAuthenticated ? (
         <>

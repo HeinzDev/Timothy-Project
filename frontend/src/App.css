@@ -35,6 +35,8 @@
 }
 
 .login-container {
+  background: url('../public/background.png');
+  background-size: cover;
   margin: auto;
   padding: 0;
   width: 100%;

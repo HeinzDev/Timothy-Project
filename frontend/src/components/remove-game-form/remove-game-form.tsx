@@ -21,7 +21,6 @@ const RemoveGameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
         console.log(response.data);
 
         const gameToDelete = games.find((game: any) => game.name == name);
-        console.log(gameToDelete);
 
         if (gameToDelete) {
           await axios.delete(`https://timothy-project.onrender.com/api/games/${gameToDelete._id}`);

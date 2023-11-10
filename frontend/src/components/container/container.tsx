@@ -3,11 +3,14 @@ import { Games } from '../games/games';
 import Menu from '../menu/menu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useContext } from 'react';
+import { useAuth } from '../../Context/AuthContext';
 
 interface ContainerProps {
   mainWidth: string;
   menuWidth: string;
   borderSize: string;
+  isLogged: boolean;
 }
 
 interface User {
@@ -16,10 +19,12 @@ interface User {
   icon: string;
 }
 
-function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
-  const loggedInID = '6545b42ff11a4570f6e83281'; // change user: 6545c98e1fd42d741a201a43 6545b42ff11a4570f6e83281
+function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
   const [loadedUser, setLoadedUser] = useState<boolean>(false);
+  const { _id } = useAuth();
+
+  const loggedInID = _id ?? '';
   const menuStyle = {
     width: menuWidth,
     transition: 'width 0.5s',
@@ -30,7 +35,6 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        //chamada da api certa
         const response = await axios.get<User>(`https://timothy-project.onrender.com/api/users/${loggedInID}`);
         setUser(response.data);
         setLoadedUser(false);
@@ -50,7 +54,7 @@ function Container({ mainWidth, menuWidth, borderSize }: ContainerProps) {
       </div>
       <div className="side-menu" style={menuStyle}>
         <div className="menu-content">
-          <Menu name={user?.name ?? ''} icon={user?.icon ?? ''} isLoading={loadedUser} />
+          <Menu name={user?.name ?? ''} icon={user?.icon ?? ''} isLoading={loadedUser} isLogged={isLogged} />
         </div>
       </div>
     </div>

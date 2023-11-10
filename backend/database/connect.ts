@@ -7,18 +7,16 @@ dotenv.config();
 
 mongoose.set('strictQuery', true);
 
-//url do banco de dados
 const mongoURL =
   process.env.MONGODB_USER && process.env.MONGODB_PASSWORD !== ''
     ? `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.tnvz3i0.mongodb.net/?retryWrites=true&w=majority`
-    : process.env.LOCAL; //banco de dados local(docker)
+    : process.env.LOCAL; //(docker)
 
 const connectToDataBase = async () => {
   try {
     await mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Conexão com banco de dados estabelecida!');
 
-    //criar usuario padrão, pode ser substituido com nossos usuários depois
     User.findOne({ username: '@admin' })
       .then((user) => {
         if (!user) {

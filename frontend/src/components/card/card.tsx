@@ -1,8 +1,5 @@
 import React, { useRef } from 'react';
 import './style.css';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
-
 interface CardProps {
   name: string;
   image: string;
@@ -37,7 +34,6 @@ const Card: React.FC<CardProps> = ({ name, image }) => {
       card.style.boxShadow = '10px 20px 15px 2px rgba(0, 0, 0, 0)';
     }
   };
-  //<FontAwesomeIcon icon={faCommentAlt} />
 
   return (
     <div className="item">
@@ -47,7 +43,7 @@ const Card: React.FC<CardProps> = ({ name, image }) => {
         <img src={image} alt="game-card" className="card-media" />
       </div>
       <div className="icons-div">
-        <i className='fa-solid fa-message'></i>
+        <i className="fa-solid fa-message"></i>
       </div>
     </div>
   );

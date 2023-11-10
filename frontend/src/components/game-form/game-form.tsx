@@ -17,8 +17,6 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
       if (name.trim() === '' || image.trim() === '') {
         alert('Please fill in both fields');
       } else {
-        console.log(name);
-
         await axios
           .post('https://timothy-project.onrender.com/api/games', {
             name: name,

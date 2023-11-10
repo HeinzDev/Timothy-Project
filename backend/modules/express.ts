@@ -6,6 +6,8 @@ import GamesModel from '../database/models/games.model';
 import CommentModel from '../database/models/comment.model';
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.use(express.json());
 
@@ -30,8 +32,8 @@ app.get('/', (req: any, res: any) => {
 /* Autenticação por token (avaliar se é necessario)  */
 
 const verifyToken = (req: any, res: any, next: any) => {
-  const token = req.cookies.token;
-
+  const token = req.cookies?.token;
+  console.log('Headers:', req.headers);
   if (!token) {
     return res.status(401).json({ error: 'Acesso não autorizado!' });
   }
@@ -40,7 +42,8 @@ const verifyToken = (req: any, res: any, next: any) => {
     const decoded = jwt.verify(token, 'chave-token');
     req.user = decoded;
     next();
-  } catch {
+  } catch (error) {
+    console.error('Erro ao verificar token:', error);
     return res.status(401).json({ error: 'Token inválido' });
   }
 };
@@ -73,7 +76,13 @@ app.post('/api/login', async (req: any, res: any) => {
     } else {
       const token = jwt.sign({ id: user._id, username: user.username }, 'chave-token');
       res.cookie('token', token, { httpOnly: true });
-      res.json({ token, loggedIn: true });
+      res.json({
+        token,
+        loggedIn: true,
+        name: user.name,
+        username: user.username,
+        _id: user._id,
+      });
     }
   } catch (error: any) {
     console.error('Erro ao verificar credenciais!', error);
@@ -82,7 +91,7 @@ app.post('/api/login', async (req: any, res: any) => {
 });
 
 // GETS
-app.get('/api/users', async (req: any, res: any) => {
+app.get('/api/users', verifyToken, async (req: any, res: any) => {
   try {
     const users = await UserModel.find({});
 
@@ -92,7 +101,7 @@ app.get('/api/users', async (req: any, res: any) => {
   }
 });
 
-app.get('/api/users/:id', async (req: any, res: any) => {
+app.get('/api/users/:id', verifyToken, async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await UserModel.findById(id);

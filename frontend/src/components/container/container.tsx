@@ -34,23 +34,13 @@ function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProp
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        };
-
-        if (token) {
-          axios
-            .get(`https://timothy-project.onrender.com/api/users/${loggedInID}`, config)
-            .then((response) => {
-              setUser(response.data);
-              setLoadedUser(false);
-            })
-            .catch((e) => console.log('error:' + e));
-        }
+        axios
+          .get(`https://timothy-project.onrender.com/api/users/${loggedInID}`)
+          .then((response) => {
+            setUser(response.data);
+            setLoadedUser(false);
+          })
+          .catch((e) => console.log('error:' + e));
       } catch (error) {
         console.error('Erro ao obter os jogos:', error);
         setLoadedUser(true);

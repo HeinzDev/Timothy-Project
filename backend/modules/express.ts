@@ -9,15 +9,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-const cors = require('cors');
-app.use(cors());
-
-app.use((req: any, res: any, next: any) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+import cors from './cors';
+app.use(cors);
 
 app.use(express.json());
 

@@ -21,6 +21,7 @@ const Login = () => {
       .then((response) => {
         const { token, name, username, _id } = response.data;
         localStorage.setItem('token', token);
+        axios.defaults.headers['Authorization'] = `Bearer ${token}`;
         login(name, username, _id);
         navigate('/');
       })

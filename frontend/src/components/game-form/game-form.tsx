@@ -64,7 +64,7 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
         </div>
         {image != '' && (
           <div className="game-preview">
-            <Card name={name} image={image} />
+            <Card name={name} image={image} comments={0} />
           </div>
         )}
       </div>

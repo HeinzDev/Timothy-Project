@@ -3,9 +3,10 @@ import './style.css';
 interface CardProps {
   name: string;
   image: string;
+  comments: number;
 }
 
-const Card: React.FC<CardProps> = ({ name, image }) => {
+const Card: React.FC<CardProps> = ({ name, image, comments }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -42,9 +43,11 @@ const Card: React.FC<CardProps> = ({ name, image }) => {
       <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         <img src={image} className="card-media" />
       </div>
-      <div className="icons-div">
-        <i className="fa-solid fa-message"></i>
-      </div>
+      {comments > 0 && (
+        <div className="icons-div">
+          <i className="fa-solid fa-message"></i>
+        </div>
+      )}
     </div>
   );
 };

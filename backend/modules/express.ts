@@ -190,6 +190,7 @@ app.post('/api/games/:id/comments', async (req: any, res: any) => {
       text: req.body.text,
       postId: postId,
     });
+    await GamesModel.updateOne({ _id: postId }, { $inc: { comments: 1 } });
 
     res.status(201).json(comment);
   } catch (error: any) {
@@ -249,7 +250,7 @@ app.patch('/api/games/:postId/comments/:commentId', async (req: any, res: any) =
   try {
     const postId = req.params.postId;
     const commentId = req.params.commentId;
-
+    //wrong
     const updatedComment = await CommentModel.findByIdAndUpdate(commentId, req.body, { new: true });
 
     res.status(200).json(updatedComment);

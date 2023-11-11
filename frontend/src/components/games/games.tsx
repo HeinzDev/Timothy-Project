@@ -10,6 +10,7 @@ interface GameData {
   _id: number;
   name: string;
   image: string;
+  comments: number;
 }
 export const Games = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -44,10 +45,10 @@ export const Games = () => {
             <div className="loading-card">{}</div>
           </>
         ) : (
-          games.map(({ name, image, _id }) => {
+          games.map(({ name, image, _id, comments }) => {
             return (
               <Link to={`/Game/${_id}`} key={_id}>
-                <Card name={name} image={image} />
+                <Card name={name} image={image} comments={comments} />
               </Link>
             );
           })

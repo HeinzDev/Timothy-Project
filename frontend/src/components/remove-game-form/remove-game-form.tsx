@@ -1,4 +1,4 @@
-import './style.css';
+import React from 'react';
 import axios from 'axios';
 
 interface GameFormProps {
@@ -7,7 +7,7 @@ interface GameFormProps {
   reloadGames: () => void;
 }
 
-const RemoveGameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
+const RemoveGameForm: React.FC<GameFormProps> = ({ visible, onClose, reloadGames }) => {
   const sendGames = async () => {
     try {
       const nameInput = document.getElementById('name') as HTMLInputElement | null;
@@ -20,9 +20,21 @@ const RemoveGameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
 
         console.log(response.data);
 
-        const gameToDelete = games.find((game: any) => game.name == name);
+        const gameToDelete = games.find((game: any) => game.name === name);
 
+        //deleting all comments
         if (gameToDelete) {
+          const commentsResponse = await axios.get(
+            `https://timothy-project.onrender.com/api/games/${gameToDelete._id}/comments`
+          );
+          const comments = commentsResponse.data;
+
+          for (const comment of comments) {
+            await axios.delete(
+              `https://timothy-project.onrender.com/api/games/${gameToDelete._id}/comments/${comment._id}`
+            );
+          }
+
           await axios.delete(`https://timothy-project.onrender.com/api/games/${gameToDelete._id}`);
           nameInput.value = '';
           onClose();

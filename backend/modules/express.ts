@@ -94,7 +94,7 @@ app.post('/api/login', async (req: any, res: any) => {
 // GETS
 app.get('/api/users', verifyToken, async (req: any, res: any) => {
   try {
-    const users = await UserModel.find({});
+    const users = await UserModel.find({}, { password: 0 });
 
     res.status(200).json(users);
   } catch (error: any) {
@@ -105,7 +105,7 @@ app.get('/api/users', verifyToken, async (req: any, res: any) => {
 app.get('/api/users/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
-    const user = await UserModel.findById(id);
+    const user = await UserModel.findById(id, { password: 0 });
 
     return res.status(200).json(user);
   } catch (error: any) {
@@ -172,7 +172,7 @@ app.post('/api/users', async (req: any, res: any) => {
   }
 });
 
-app.post('/api/games', async (req: any, res: any) => {
+app.post('/api/games', verifyToken, async (req: any, res: any) => {
   try {
     const post = await GamesModel.create(req.body);
 
@@ -219,13 +219,18 @@ app.post('/api/users/:user/games/:game/star', async (req: any, res: any) => {
 });
 
 // PATCHS
-
-app.patch('/api/users/:id', async (req: any, res: any) => {
+app.patch('/api/users/:id', verifyToken, async (req: any, res: any) => {
   try {
-    const id = req.params.id;
-    const users = await UserModel.findByIdAndUpdate(id, req.body, { new: true });
+    const userId = req.user.id;
+    const requestedUserId = req.params.id;
 
-    res.status(200).json(users);
+    if (userId !== requestedUserId) {
+      return res.status(401).json({ error: 'Acesso não autorizado!' });
+    }
+
+    const updatedUser = await UserModel.findByIdAndUpdate(requestedUserId, req.body, { new: true });
+
+    res.status(200).json(updatedUser);
   } catch (error: any) {
     res.status(500).send(error.message);
   }
@@ -261,7 +266,7 @@ app.patch('/api/games/:postId/comments/:commentId', async (req: any, res: any) =
 
 // DELETES
 
-app.delete('/api/users/:id', async (req: any, res: any) => {
+app.delete('/api/users/:id', verifyToken, async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await UserModel.findByIdAndRemove(id);
@@ -272,7 +277,7 @@ app.delete('/api/users/:id', async (req: any, res: any) => {
   }
 });
 
-app.delete('/api/games/:id', async (req: any, res: any) => {
+app.delete('/api/games/:id', verifyToken, async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await GamesModel.findByIdAndRemove(id);

@@ -9,14 +9,12 @@ a {
 .card {
     width: 90%;
     position: relative;
-    
     overflow: hidden;
     border-radius: 1rem;
     position: relative;
     border: 5px solid white;
     aspect-ratio: 9/12;
     margin: 0% 5%;
-    height: 250px;
 }
 .card:hover {
     z-index: 100;  

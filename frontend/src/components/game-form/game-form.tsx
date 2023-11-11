@@ -2,6 +2,7 @@ import './style.css';
 import axios from 'axios';
 import { useState } from 'react';
 import Card from '../card/card';
+import { useToaster } from '../../Context/ToasterContext';
 
 interface GameFormProps {
   visible: boolean;
@@ -12,6 +13,7 @@ interface GameFormProps {
 const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
+  const showToaster = useToaster();
 
   const sendGames = async () => {
     try {
@@ -28,7 +30,7 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
             console.log(response);
           })
           .catch(function (error) {
-            alert('Failed to create the game');
+            showToaster('Failed to create the game');
             console.log(error);
           });
 
@@ -38,7 +40,7 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
         onClose();
       }
     } catch (error) {
-      alert('Failed to create the game');
+      showToaster('Failed to create the game');
       console.log(error);
       onClose();
     }

@@ -4,7 +4,6 @@ import Menu from '../menu/menu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../Context/AuthContext';
-
 interface ContainerProps {
   mainWidth: string;
   menuWidth: string;
@@ -42,7 +41,7 @@ function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProp
           })
           .catch((e) => console.log('error:' + e));
       } catch (error) {
-        console.error('Erro ao obter os jogos:', error);
+        console.error('Error: failed to get games', error);
         setLoadedUser(true);
       }
     };

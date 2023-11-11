@@ -53,7 +53,14 @@ const Comments: React.FC<CommentProps> = ({ originalPoster, text, postId }) => {
   return (
     <div className="comment">
       <div className="comment-icon">
-        <img src={opData?.icon} alt="" />
+        <img
+          src={
+            opData
+              ? opData.icon
+              : 'https://cdn.vectorstock.com/i/preview-1x/08/19/gray-photo-placeholder-icon-design-ui-vector-35850819.jpg'
+          }
+          alt=""
+        />
       </div>
       <div className="comment-data">
         <label>{opData ? opData.name : 'unknown'}</label>

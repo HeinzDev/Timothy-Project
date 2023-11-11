@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './style.css';
 import axios from 'axios';
+import { useToaster } from '../../Context/ToasterContext';
 
 interface GameFormProps {
   visible: boolean;
@@ -10,6 +11,7 @@ interface GameFormProps {
 
 const EditIcon = ({ visible, onClose, user }: GameFormProps) => {
   const [iconLink, setIconLink] = useState<string>('');
+  const showToaster = useToaster();
 
   const sendGames = async () => {
     try {
@@ -30,10 +32,10 @@ const EditIcon = ({ visible, onClose, user }: GameFormProps) => {
 
           if ('icon' in userData) {
             await axios.patch(`https://timothy-project.onrender.com/api/users/${user}`, { icon: iconLink }, config);
-            alert('User icon updated successfully.');
+            showToaster('User icon updated successfully.');
             onClose();
           } else {
-            alert('Failed to update user icon. User data format is incorrect.');
+            showToaster('Failed to update user icon. User data format is incorrect.');
             onClose();
           }
         }

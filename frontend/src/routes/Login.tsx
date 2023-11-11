@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import GlobalStyles from '../styled-components/GlobalStyles';
+import { useToaster } from '../Context/ToasterContext';
 
 const Login = () => {
   const { login } = useAuth();
+  const showToast = useToaster();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      showToast('use admin for user and password to enter as a guest!');
+    }, 1000);
+  }, []);
 
   const loginHandler = () => {
     const loginData = {
@@ -25,7 +33,7 @@ const Login = () => {
         login(name, username, _id);
         navigate('/');
       })
-      .catch((error) => console.log(error));
+      .catch((error) => showToast('Wrong credentials!'));
   };
 
   const handleKeyPress = (e: any) => {

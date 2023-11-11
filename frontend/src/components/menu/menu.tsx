@@ -67,9 +67,14 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
           )}
         </div>
       ) : (
-        <button className="login-button" style={buttonStyle} onClick={loginPage}>
-          Login
-        </button>
+        <>
+          <button className="login-button" style={buttonStyle} onClick={loginPage}>
+            Login
+          </button>
+          <button className="login-button" style={buttonStyle} onClick={() => navigate('/Sign')}>
+            Sign-In
+          </button>
+        </>
       )}
     </>
   );

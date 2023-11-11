@@ -4,7 +4,7 @@ import GlobalStyles from '../../styled-components/GlobalStyles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Comments from '../comments/comments';
-import { useAuth } from '../../Context/AuthContext';
+import { useToaster } from '../../Context/ToasterContext';
 
 GlobalStyles;
 interface CardProps {
@@ -31,26 +31,27 @@ const GamePageCard: React.FC<CardProps> = ({ loggedUser, name, image, gameId }) 
   const [userData, setUserData] = useState<UserProps>();
   const cardRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
+  const showToast = useToaster();
 
   useEffect(() => {
     console.log(loggedUser);
-    if (loggedUser) {
-      const getComments = async () => {
-        if (gameId) {
-          try {
-            const response = await axios.get<CommentProps[]>(
-              `https://timothy-project.onrender.com/api/games/${gameId}/comments`
-            );
-            setComments(response.data);
-            setReloadComments(false);
-            console.log(response.data);
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      };
-      getComments();
 
+    const getComments = async () => {
+      if (gameId) {
+        try {
+          const response = await axios.get<CommentProps[]>(
+            `https://timothy-project.onrender.com/api/games/${gameId}/comments`
+          );
+          setComments(response.data);
+          setReloadComments(false);
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    getComments();
+    if (loggedUser) {
       const getUser = async () => {
         try {
           const response = await axios.get(`https://timothy-project.onrender.com/api/users/${loggedUser}`);
@@ -72,19 +73,23 @@ const GamePageCard: React.FC<CardProps> = ({ loggedUser, name, image, gameId }) 
         postId: `${gameId}`,
       };
       console.log(commentData);
+
       try {
         const response = await axios.post(
           `https://timothy-project.onrender.com/api/games/${gameId}/comments`,
           commentData
         );
         console.log(response.data);
+        showToast('Done!');
         setReloadComments(true);
       } catch (error) {
         console.log(error);
       }
     } else {
-      alert('log in to comment.');
-      navigate('/login');
+      showToast('Log in to post comments!');
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
     }
   };
 
@@ -133,6 +138,7 @@ const GamePageCard: React.FC<CardProps> = ({ loggedUser, name, image, gameId }) 
             {comments?.map(({ _id, user, text, postId }) => {
               return <Comments key={_id} originalPoster={user} text={text} postId={postId} />;
             })}
+            {comments && comments.length === 0 && <div>There are no comments yet</div>}
           </div>
         </div>
       </div>

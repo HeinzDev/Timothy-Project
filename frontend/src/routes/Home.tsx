@@ -2,12 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Container from '../components/container/container';
 import { useAuth } from '../Context/AuthContext';
+import { useToaster } from '../Context/ToasterContext';
 
 const Home = () => {
   const [mainWidth, setMainWidth] = useState<string>('100%');
   const [menuWidth, setMenuWidth] = useState<string>('0%');
   const [sideBorder, setsideBorder] = useState<string>('0px solid #99999900');
 
+  const showToast = useToaster();
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -15,6 +17,7 @@ const Home = () => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
+    if (isAuthenticated) showToast('Welcome!');
   });
 
   const toggleWidth = () => {

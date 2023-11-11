@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './routes/Home';
 import Login from './routes/Login';
+import Sign from './routes/Sign';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/Login',
         element: <Login />,
+      },
+      {
+        path: '/Sign',
+        element: <Sign />,
       },
       {
         path: '/Game/:id',

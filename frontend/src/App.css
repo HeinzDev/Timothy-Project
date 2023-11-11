@@ -47,6 +47,19 @@
   color: aliceblue;
 }
 
+.container-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2em;
+  border-radius: 10px;
+  background-color: #555;
+  border: 2px solid #999;
+  font-weight: 700;
+  font-size: large;
+  max-width: 700px;
+}
+
 .login-form {
 
   width: 20em;
@@ -56,9 +69,6 @@
   justify-content: center;
   align-items: center;
   padding: 2em;
-  border-radius: 10px;
-  background-color: #555;
-  border: 2px solid #999;
   font-weight: 700;
   font-size: large;
 }
@@ -80,8 +90,21 @@
   background-color: #DDD;
 }
 
+.profile-preview{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
 
-.login-button {
+.profile-preview img{
+border-radius: 50%;
+border: 1px solid white;
+max-width: 300px;
+}
+
+.login-button, .sign-button{
   width: 7em;
   height: 3em;
   background-color: #555;
@@ -89,6 +112,14 @@
   color: aliceblue;
   font-weight: 700;
   font-size: 15px;
+}
+
+.sign-button{
+  padding: .8em;
+  transition: .3s ease;
+}
+.sign-button:hover{
+  transform: scale(1.1);
 }
 
 .game-page-container {

@@ -1,13 +1,16 @@
 import './App.css';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthProvider } from './Context/AuthContext';
+import { ToasterProvider } from './Context/ToasterContext';
 
 function App() {
   return (
     <AuthProvider>
-      <div className="app">
-        <Outlet />
-      </div>
+      <ToasterProvider>
+        <div className="app">
+          <Outlet />
+        </div>
+      </ToasterProvider>
     </AuthProvider>
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { useToaster } from '../../Context/ToasterContext';
 
 interface GameFormProps {
   visible: boolean;
@@ -8,6 +9,7 @@ interface GameFormProps {
 }
 
 const RemoveGameForm: React.FC<GameFormProps> = ({ visible, onClose, reloadGames }) => {
+  const showToaster = useToaster();
   const sendGames = async () => {
     try {
       const nameInput = document.getElementById('name') as HTMLInputElement | null;
@@ -40,12 +42,12 @@ const RemoveGameForm: React.FC<GameFormProps> = ({ visible, onClose, reloadGames
           onClose();
           reloadGames();
         } else {
-          alert('Game not found');
+          showToaster('Game not found');
           onClose();
         }
       }
     } catch (error) {
-      alert('Failed to find/delete game.');
+      showToaster('Failed to find/delete game.');
       onClose();
     }
   };

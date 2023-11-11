@@ -38,16 +38,13 @@ const Card: React.FC<CardProps> = ({ name, image, comments }) => {
 
   return (
     <div className="item">
-      {name}
-      <div className="card-overlay"></div>
-      <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <img src={image} className="card-media" />
-      </div>
-      {comments > 0 && (
-        <div className="icons-div">
-          <i className="fa-solid fa-message"></i>
+      <div className="title-row">{name}</div>
+      <div className="card-row">
+        <div className="card" ref={cardRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <img src={image} className="card-media" />
         </div>
-      )}
+      </div>
+      <div className="icons-row">{comments > 0 && <i className="fa-solid fa-message"></i>}</div>
     </div>
   );
 };

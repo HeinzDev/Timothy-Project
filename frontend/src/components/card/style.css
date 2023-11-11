@@ -16,6 +16,7 @@ a {
     border: 5px solid white;
     aspect-ratio: 9/12;
     margin: 0% 5%;
+    height: 250px;
 }
 .card:hover {
     z-index: 100;  
@@ -32,7 +33,15 @@ a {
     object-position: center;
 }
 
-.icons-div {
+.title-row{
+
+}
+
+.card-row{
+
+}
+
+.icons-row {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

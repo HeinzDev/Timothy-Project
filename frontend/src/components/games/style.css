@@ -22,7 +22,9 @@
 
 .item {
     position: relative;
-    display: flex; flex-direction: column; align-content: flex-start;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
     background-color: #555555;
     width: 12em;
     min-height: 300px;
@@ -31,7 +33,7 @@
     transition: .4s ease;
     padding: 2rem 1rem;
     aspect-ratio: 9/12;
-    gap:7px;
+    gap:.4em;
     overflow: hidden;
 }
 
@@ -62,15 +64,14 @@
 .loading-card {
   position: relative;
   background-color: #555555;
-    width: 12em;
-    min-height: 300px;
-    margin: 10px;
-    border-radius: 8px;
-    padding: 2rem 1rem;
+  width: 12em;
+  min-height: 300px;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 2rem 1rem;
   animation: blinking .6s infinite alternate; /* Exemplo de animação de reflexo */
   cursor: pointer;
   overflow: hidden;
-  /* Estilos adicionais a gosto */
 }
 
 .loading-card::before{

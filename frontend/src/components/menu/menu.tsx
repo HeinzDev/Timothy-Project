@@ -54,9 +54,7 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
               <h2>{name}</h2>
 
               <div className="user-buttons">
-                <button className="action-buttons">option 1</button>
-                <button className="action-buttons">option 2</button>
-                <button className="action-buttons">option 3</button>
+                <button className="action-buttons">PROFILE</button>
                 <button className="action-buttons" onClick={handleLogout}>
                   LOGOUT
                 </button>

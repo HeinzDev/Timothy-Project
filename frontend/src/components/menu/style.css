@@ -13,6 +13,7 @@
   overflow: hidden;
   border-radius: 50%;
   cursor: pointer;
+  min-width: 10em;
 }
 .icon-container {
   position: relative;
@@ -93,12 +94,20 @@
     color: aliceblue;
     cursor: pointer;
     list-style-type: none;
-    width: 70%;
+    width: 100px;
     background-color: #9999992d;
     border: 1px solid #999;
     border-radius: 5px;
     padding: 10px;
     margin: .5em 0;
+    transition: .3s ease;
+}
+
+.action-buttons:hover {
+transform: scale(1.05);
+}
+.action-buttons:active {
+transform: scale(.95);
 }
 
 

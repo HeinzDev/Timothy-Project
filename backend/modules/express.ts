@@ -102,7 +102,7 @@ app.get('/api/users', verifyToken, async (req: any, res: any) => {
   }
 });
 
-app.get('/api/users/:id', verifyToken, async (req: any, res: any) => {
+app.get('/api/users/:id', async (req: any, res: any) => {
   try {
     const id = req.params.id;
     const user = await UserModel.findById(id);
@@ -186,6 +186,7 @@ app.post('/api/games/:id/comments', async (req: any, res: any) => {
   try {
     const postId = req.params.id;
     const comment = await CommentModel.create({
+      user: req.body.user,
       text: req.body.text,
       postId: postId,
     });
@@ -285,9 +286,9 @@ app.delete('/api/games/:postId/comments/:commentId', async (req: any, res: any) 
   try {
     const commentId = req.params.commentId;
 
-    await CommentModel.findByIdAndRemove(commentId);
+    const comment = await CommentModel.findByIdAndRemove(commentId);
 
-    res.status(204).send();
+    res.status(200).send(comment);
   } catch (error: any) {
     res.status(500).send(error.message);
   }

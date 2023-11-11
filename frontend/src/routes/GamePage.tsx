@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import GamePageCard from '../components/game-page-card/game-page-card';
+import { useAuth } from '../Context/AuthContext';
 
 interface GameData {
   _id: string;
@@ -14,7 +15,7 @@ interface GameData {
 const GamePage = () => {
   const { id } = useParams<{ id: string }>();
   const [gameData, setGameData] = useState<GameData>();
-  console.log(id);
+  const { _id } = useAuth();
 
   const white = {
     color: 'white',
@@ -30,10 +31,15 @@ const GamePage = () => {
       }
     };
     getGameData();
-  }, [id]);
+  }, []);
   return (
     <div style={white} className="game-page-container">
-      <GamePageCard name={gameData ? gameData.name : ''} image={gameData ? gameData.image : ''} />
+      <GamePageCard
+        loggedUser={_id ? _id : ''}
+        name={gameData ? gameData.name : ''}
+        image={gameData ? gameData.image : ''}
+        gameId={id ? id : ''}
+      />
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 95%;
+    min-height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    gap: 1em;
+    padding: 1em;
+}
+
+.comment-icon  img{
+    width: 5em;
+    border-radius: 50%;
+}
+
+.comment-data label{
+    font-weight: bold;
+}

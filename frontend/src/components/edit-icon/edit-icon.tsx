@@ -18,26 +18,16 @@ const EditIcon = ({ visible, onClose, user }: GameFormProps) => {
       const nameInput = document.getElementById('name') as HTMLInputElement | null;
 
       if (nameInput) {
-        const token = localStorage.getItem('token');
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        };
+        const response = await axios.get(`https://timothy-project.onrender.com/api/users/${user}`);
+        const userData = response.data;
 
-        if (token) {
-          const response = await axios.get(`https://timothy-project.onrender.com/api/users/${user}`, config);
-          const userData = response.data;
-
-          if ('icon' in userData) {
-            await axios.patch(`https://timothy-project.onrender.com/api/users/${user}`, { icon: iconLink }, config);
-            showToaster('User icon updated successfully.');
-            onClose();
-          } else {
-            showToaster('Failed to update user icon. User data format is incorrect.');
-            onClose();
-          }
+        if ('icon' in userData) {
+          await axios.patch(`https://timothy-project.onrender.com/api/users/${user}`, { icon: iconLink });
+          showToaster('User icon updated successfully.');
+          onClose();
+        } else {
+          showToaster('Failed to update user icon. User data format is incorrect.');
+          onClose();
         }
       }
     } catch (error) {

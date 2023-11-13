@@ -1,15 +1,17 @@
-  .button-menu {
+.button-menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+
   padding: 1em;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -10px;
+  right: -10px;
 }
 
 .action-button {
-  border-radius: 45%; 
-  background-color: #933;
+  border-radius: 50%;
+  background-color: #9b2324;
+  border: none;
   width: 5em;
   height: 5em;
   color: white;
@@ -18,5 +20,16 @@
 }
 
 .action-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: 1px 1px 25px rgb(146, 26, 26);
+}
+
+.action-button:active {
+  transform: scale(1.06);
+  background-color: #7d2525;
+  box-shadow: 1px 1px 1px inset #111;
+}
+
+.action-button i {
+  font-size: 20px;
 }

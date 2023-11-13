@@ -22,11 +22,11 @@ const ButtonMenu = ({ reloadGames }: reloadGames) => {
   return (
     <div className="button-menu">
       <button className="action-button" onClick={toggleRemoveForm}>
-        <i className="fa-solid fa-minus"></i>
+        <i className="fa-solid fa-trash"></i>
       </button>
       <RemoveGameForm reloadGames={reloadGames} visible={removeFormVisible} onClose={toggleRemoveForm} />
       <button className="action-button" onClick={toggleAddForm}>
-        <i className="fa-solid fa-plus"></i>
+        <i className="fa-solid fa-sticky-note"></i>
       </button>
       <GameForm reloadGames={reloadGames} visible={addFormVisible} onClose={toggleAddForm} />
     </div>

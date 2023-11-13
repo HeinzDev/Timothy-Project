@@ -51,10 +51,10 @@ const Login = () => {
           <input type="text" onChange={(e) => setUsername(e.target.value)} onKeyPress={handleKeyPress} />
           <label htmlFor="">password</label>
           <input type="password" onChange={(e) => setPassword(e.target.value)} onKeyPress={handleKeyPress} />
+          <button className="login-button exo-font" onClick={loginHandler}>
+            LOGIN
+          </button>
         </div>
-        <button className="login-button exo-font" onClick={loginHandler}>
-          LOGIN
-        </button>
       </div>
     </div>
   );

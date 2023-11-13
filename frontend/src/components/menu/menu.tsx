@@ -23,10 +23,6 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
     navigate('/login');
   };
 
-  const buttonStyle = {
-    marginTop: '80%',
-  };
-
   const handleEditIcon = () => {
     setIconEdit(!iconEdit);
   };
@@ -65,14 +61,14 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
           )}
         </div>
       ) : (
-        <>
-          <button className="login-button" style={buttonStyle} onClick={loginPage}>
+        <div className="menu-button-content">
+          <button className="login-button exo-font" onClick={loginPage}>
             Login
           </button>
-          <button className="login-button" style={buttonStyle} onClick={() => navigate('/Sign')}>
+          <button className="login-button exo-font" onClick={() => navigate('/Sign')}>
             Sign-In
           </button>
-        </>
+        </div>
       )}
     </>
   );

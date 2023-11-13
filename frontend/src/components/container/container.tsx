@@ -4,10 +4,10 @@ import Menu from '../menu/menu';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../Context/AuthContext';
+
 interface ContainerProps {
   mainWidth: string;
   menuWidth: string;
-  borderSize: string;
   isLogged: boolean;
 }
 
@@ -17,7 +17,7 @@ interface User {
   icon: string | null;
 }
 
-function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProps) {
+function Container({ mainWidth, menuWidth, isLogged }: ContainerProps) {
   const [user, setUser] = useState<User | undefined>(undefined);
   const [loadedUser, setLoadedUser] = useState<boolean>(false);
   const { _id } = useAuth();
@@ -27,7 +27,6 @@ function Container({ mainWidth, menuWidth, borderSize, isLogged }: ContainerProp
     width: menuWidth,
     transition: 'width 0.5s',
     overflow: 'hidden',
-    border: borderSize,
   };
 
   useEffect(() => {

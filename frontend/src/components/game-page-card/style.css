@@ -84,7 +84,7 @@ a {
     position: relative;
     display: flex; flex-direction: column; align-content: flex-start;
     align-items: center;
-    background-color: #555555;
+    background-color: #2a2a2a;
     width: 60%;
     min-height: 300px;
     margin: 10px;
@@ -112,11 +112,10 @@ a {
     margin-top: 2em;
     width: 90%;
     min-height: 30%;
-    background-color: #454545;
-    border: 1px solid #999;
+    background-color: #343434;
     border-radius: 10px;
     padding: 1em;
-    overflow: scroll;
+    align-items: center;
 }
 
 .comment-input {
@@ -126,8 +125,8 @@ a {
     justify-content: flex-start;
     align-items: center;
     width: 95%;
-    min-height: 70px;
-    background-color: #5b5b5b;
+    min-height: 75px;
+    background-color: #424242;
     border: 1px solid #999;
     border-radius: 10px;
     overflow: hidden;
@@ -138,19 +137,21 @@ a {
 .comment-input img {
     width: 5em;
     border-radius: 50%;
+    aspect-ratio: 1/1;
 }
 
 .text-input {
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-self: flex-start;
 }
 
 .comment-input input {
     border-radius: 10px;
-    padding: .7em;
-    background-color: #444;
-    border: 1px solid white;
+    padding: .3em;
+    background-color: #393939;
+    border: 1px solid rgb(160, 160, 160);
 
     color: white;
     margin-bottom: 1.2em;
@@ -158,15 +159,22 @@ a {
 
 .comment-input button {
     position: absolute;
-    bottom: .7em;
-    right: 1em;
-    padding: .5em;
-    background-color: #444;
-    border: 1px solid white;
+    bottom: .5em;
+    right: 1.3em;
+    padding: 0.3em 1.5em;
+    background-color: #3f3e3e;
+    border: 1px solid rgb(171, 171, 171);
     border-radius: 10px;
     color: white;
+}
+.comment-input button:hover {
+    cursor: pointer;
 }
 
 .comment-input button:active{
     transform: scale(.95);
+}
+
+.comments {
+    align-self: flex-start;
 }

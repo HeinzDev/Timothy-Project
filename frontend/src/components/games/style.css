@@ -1,63 +1,63 @@
 .main-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #444444;
-    min-height: 20%;
-    border-radius: 20px;
-    justify-content: center;
-    text-align: center;
-    font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  min-height: 20%;
+  border-radius: 20px;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
 }
 
 .games-container {
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow-x: auto;
-    font-size: large;
-    margin-bottom: 20px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  font-size: large;
+  margin-bottom: 20px;
 }
 
 .item {
-    position: relative;
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-    background-color: #555555;
-    width: 12em;
-    min-height: 300px;
-    margin: 10px;
-    border-radius: 8px;
-    transition: .4s ease;
-    padding: 2rem 1rem;
-    aspect-ratio: 9/12;
-    gap:.4em;
-    overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2a2a2a;
+  width: 12em;
+  min-height: 320px;
+  margin: 10px;
+  border-radius: 8px;
+  transition: 0.4s ease;
+  padding: 1.2rem 1rem;
+  aspect-ratio: 9/12;
+  gap: 0.4em;
+  overflow: hidden;
 }
 
-.item:hover{
-    transform: scale(1.05);
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset
+.item:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.item::before{
-  content: "";
+.item::before {
+  content: '';
   position: absolute;
   height: 600px;
   width: 50px;
-  background : #fff;
+  background: #fff;
 
-  right:400px;
+  right: 400px;
   bottom: -100px;
   transform: rotate(37deg);
-  transition: all .5s;
+  transition: all 0.5s;
   opacity: 0.1;
 }
 
-.item:hover::before{
+.item:hover::before {
   right: -220px;
 }
 
@@ -69,29 +69,28 @@
   margin: 10px;
   border-radius: 8px;
   padding: 2rem 1rem;
-  animation: blinking .6s infinite alternate; /* Exemplo de animação de reflexo */
+  animation: blinking 0.6s infinite alternate; /* Exemplo de animação de reflexo */
   cursor: pointer;
   overflow: hidden;
 }
 
-.loading-card::before{
-  content: "";
+.loading-card::before {
+  content: '';
   position: absolute;
   height: 600px;
   width: 50px;
-  background : #fff;
+  background: #fff;
 
-  right:400px;
+  right: 400px;
   bottom: -100px;
   transform: rotate(37deg);
-  transition: all .3s;
+  transition: all 0.3s;
   opacity: 0.3;
   animation: reflection 1s infinite ease;
 }
 
 .loading-card:hover:before {
   right: -220px;
-  
 }
 
 @keyframes blinking {
@@ -105,19 +104,19 @@
 /*omg idk what i did here but it works*/
 @keyframes reflection {
   0% {
-    right:400px;
+    right: 400px;
   }
   50% {
     right: -220px;
   }
-  51%{
-    right:400px;
+  51% {
+    right: 400px;
   }
   69% {
     right: -220px;
   }
   70% {
-    right:400px;
+    right: 400px;
     opacity: 0;
   }
 }

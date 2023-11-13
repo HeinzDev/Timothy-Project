@@ -32,14 +32,15 @@ a {
 }
 
 .title-row{
-
+    height: 15%;
 }
 
 .card-row{
-
+    height: auto;
 }
 
 .icons-row {
+    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

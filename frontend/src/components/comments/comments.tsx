@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import axios from 'axios';
 import { useAuth } from '../../Context/AuthContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface CommentProps {
   originalPoster: string;
@@ -18,6 +19,13 @@ const Comments: React.FC<CommentProps> = ({ originalPoster, text, postId }) => {
   const [userData, setUserData] = useState<UserProps>();
   const { _id } = useAuth();
   const user = _id;
+  const navigate = useNavigate();
+
+  const handleUserProfile = () => {
+    if (user) {
+      navigate(`/Profile/${originalPoster}`);
+    }
+  };
 
   const getOriginalPosters = async () => {
     try {
@@ -60,6 +68,7 @@ const Comments: React.FC<CommentProps> = ({ originalPoster, text, postId }) => {
               : 'https://cdn.vectorstock.com/i/preview-1x/08/19/gray-photo-placeholder-icon-design-ui-vector-35850819.jpg'
           }
           alt=""
+          onClick={handleUserProfile}
         />
       </div>
       <div className="comment-data">

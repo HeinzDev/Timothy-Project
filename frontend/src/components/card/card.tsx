@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import './style.css';
+
 interface CardProps {
   name: string;
   image: string;

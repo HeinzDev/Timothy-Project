@@ -1,0 +1,159 @@
+
+.back-home{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.back-home:hover{
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.back-home::before {
+    position: absolute;
+    content: '';
+    width: 200px;
+    height: 200px;
+    background: white;
+    z-index: 1;
+    padding: 1em;
+    opacity: 0;
+    transition: .5s ease
+}
+.back-home:hover::before{
+    opacity: 0.7;
+}
+  
+
+.profile-dash {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: #2a2a2a;
+    width: 50%;
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    aspect-ratio: 9/12;
+    gap:7px;
+    min-height: 1000px;
+    color: white;
+}
+  
+.user-section {
+    width: 100%;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: .4 ease;
+}
+
+.profile-content  img{
+    transition: .4s ease;
+    border-radius: 50%;
+    max-width: 40%;
+    aspect-ratio: 1/1;
+    border: 3px solid #999;
+  }
+
+  .user-text {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 5%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+  .profile-name {
+
+  }
+  .profile-content span{
+    color: #999;
+    font-weight: light;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+.current-game-section {
+    margin-top: 5%;
+    width: 100%;
+}
+
+.current-playing {
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 90%;
+    border-radius: 15px;
+    border: 1px solid #999;
+    padding: 1em;
+    background-color: #2a2a2a;
+    max-height: 5em;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    min-height: 80px;
+}
+.current-playing i{
+    font-size: 20px;
+    animation: rotating 1s linear infinite both;
+}
+.current-playing img{
+    max-width: 100px;
+    border-radius: 10px;
+}
+
+
+.favorite-games-section{
+    margin-top: 10%;
+}
+.favorite-games {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    border-radius: 15px;
+    border: 1px solid #999;
+    padding: 1em;
+    background-color: #2a2a2a;
+}
+
+.favorite-cards {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #959595;
+    width: 12em;
+    min-height: 100px;
+    margin: 10px;
+    border-radius: 8px;
+    transition: 0.4s ease;
+    padding: 1.2rem 1rem;
+    aspect-ratio: 9/12;
+    gap: 0.4em;
+    overflow: hidden;
+}
+
+@keyframes rotating {
+    0% {transform: rotate(0);}
+    0% {transform: rotate(-360deg);}
+}

@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './routes/Home';
 import Login from './routes/Login';
 import Sign from './routes/Sign';
+import Profile from './routes/Profile';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/Game/:id',
         element: <GamePage />,
+      },
+      {
+        path: '/Profile/:id',
+        element: <Profile />,
       },
     ],
   },

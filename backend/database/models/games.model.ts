@@ -1,10 +1,12 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Types } from 'mongoose';
 
 interface Games extends Document {
   name: string;
   image: string;
   stars: number;
   comments: number;
+  genre: string;
+  postedBy: Types.ObjectId;
 }
 
 const gamesSchema = new Schema<Games>({
@@ -18,6 +20,11 @@ const gamesSchema = new Schema<Games>({
   },
   stars: Number,
   comments: Number,
+  genre: String,
+  postedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 const GamesModel = mongoose.model<Games>('Games', gamesSchema);

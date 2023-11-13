@@ -15,19 +15,12 @@ interface MenuProps {
 const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
   const [iconLoading, setIconLoading] = useState(isLoading);
   const [iconEdit, setIconEdit] = useState<boolean>(false);
-
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-  const loginPage = () => {
-    navigate('/login');
-  };
-
-  const handleEditIcon = () => {
-    setIconEdit(!iconEdit);
-  };
-  const handleLogout = () => {
-    logout();
+  const handleProfile = () => {
+    alert(`${user}`);
+    navigate(`/Profile/${user}`);
   };
 
   return (
@@ -41,7 +34,7 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
             </>
           ) : (
             <>
-              <div className="icon-container" onClick={handleEditIcon}>
+              <div className="icon-container" onClick={() => setIconEdit(!iconEdit)}>
                 <div className="hover-container">
                   <img className="icon" alt="user-icon" src={icon} />
                 </div>
@@ -50,19 +43,21 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
               <h2>{name}</h2>
 
               <div className="user-buttons">
-                <button className="action-buttons">PROFILE</button>
-                <button className="action-buttons" onClick={handleLogout}>
+                <button className="action-buttons" onClick={handleProfile}>
+                  PROFILE
+                </button>
+                <button className="action-buttons" onClick={() => logout()}>
                   LOGOUT
                 </button>
               </div>
 
-              <EditIcon visible={iconEdit} onClose={handleEditIcon} user={user} />
+              <EditIcon visible={iconEdit} onClose={() => setIconEdit(!iconEdit)} user={user} />
             </>
           )}
         </div>
       ) : (
         <div className="menu-button-content">
-          <button className="login-button exo-font" onClick={loginPage}>
+          <button className="login-button exo-font" onClick={() => navigate('/login')}>
             Login
           </button>
           <button className="login-button exo-font" onClick={() => navigate('/Sign')}>

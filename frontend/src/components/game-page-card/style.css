@@ -91,7 +91,6 @@ a {
     border-radius: 8px;
     transition: .4s ease;
     padding: 2rem 1rem;
-    aspect-ratio: 9/12;
     gap:7px;
     overflow: hidden;
 }
@@ -111,7 +110,7 @@ a {
     flex-direction: column;
     margin-top: 2em;
     width: 90%;
-    min-height: 30%;
+    min-height: 20%;
     background-color: #343434;
     border-radius: 10px;
     padding: 1em;

@@ -19,7 +19,6 @@ const Menu = ({ name, icon, isLoading, isLogged, user }: MenuProps) => {
   const { logout } = useAuth();
 
   const handleProfile = () => {
-    alert(`${user}`);
     navigate(`/Profile/${user}`);
   };
 

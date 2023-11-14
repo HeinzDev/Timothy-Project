@@ -17,6 +17,7 @@
     top: 10px;
     left: 10px;
 }
+
 .back-home::before {
     position: absolute;
     content: '';
@@ -28,14 +29,15 @@
     opacity: 0;
     transition: .5s ease
 }
+
 .back-home:hover::before{
-    opacity: 0.7;
+    opacity: 0.2;
 }
   
-
 .profile-dash {
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
     position: relative;
     background-color: #2a2a2a;
@@ -44,33 +46,59 @@
     padding: 2rem 1rem;
     aspect-ratio: 9/12;
     gap:7px;
-    min-height: 1000px;
     color: white;
+    margin: 20px 0;
 }
   
 .user-section {
     width: 100%;
 }
 
+.section-text {
+ font-size: 25px;
+ font-weight: bolde;
+}
+
 .profile-content {
     display: flex;
     flex-direction: column;
+    position: relative;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     width: 100%;
-    transition: .4 ease;
+    transition: .4s ease;
 }
 
-.profile-content  img{
+.profile-icon {
     transition: .4s ease;
     border-radius: 50%;
+    position: relative;
     max-width: 40%;
     aspect-ratio: 1/1;
     border: 3px solid #999;
-  }
+}
 
-  .user-text {
+.profile-icon::before{
+    content: "";
+    position: absolute;
+    height: 600px;
+    width: 500px;
+    background : #000000;
+
+    right:0;
+    top: 0;
+    transition: all .3s;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+    
+.profile-icon::hover:before {
+    opacity: 1;
+}
+
+.user-text {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -80,10 +108,7 @@
     font-size: 30px;
 }
 
-  .profile-name {
-
-  }
-  .profile-content span{
+.profile-content span{
     color: #999;
     font-weight: light;
     font-size: 15px;
@@ -93,10 +118,11 @@
 .current-game-section {
     margin-top: 5%;
     width: 100%;
+    display: flex; flex-direction: column; align-items: center;
 }
 
 .current-playing {
-    
+    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -104,36 +130,47 @@
     border-radius: 15px;
     border: 1px solid #999;
     padding: 1em;
-    background-color: #2a2a2a;
+    background-color: #262626;
     max-height: 5em;
     align-items: center;
     gap: 10px;
     overflow: hidden;
     min-height: 80px;
 }
-.current-playing i{
+
+.disc {
     font-size: 20px;
     animation: rotating 1s linear infinite both;
 }
+
+.edit {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    transition: .4 ease;
+    cursor: pointer;
+}
+
 .current-playing img{
     max-width: 100px;
     border-radius: 10px;
 }
 
-
 .favorite-games-section{
-    margin-top: 10%;
+    margin-top: 5%;
+    display: flex; flex-direction: column; align-items: center;
 }
+
 .favorite-games {
     justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 90%;
+    width: 85%;
     border-radius: 15px;
     border: 1px solid #999;
     padding: 1em;
-    background-color: #2a2a2a;
+    background-color: #262626;
 }
 
 .favorite-cards {

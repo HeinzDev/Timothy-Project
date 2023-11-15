@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 import UserModel from '../database/models/user.model';
 import GamesModel from '../database/models/games.model';
 import CommentModel from '../database/models/comment.model';
+import mongoose from 'mongoose';
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -204,17 +205,25 @@ app.post('/api/users/:user/games/:game/star', async (req: any, res: any) => {
 
   try {
     await GamesModel.updateOne({ _id: gameId }, { $inc: { stars: 1 } });
-
     const user = await UserModel.findById(userId);
 
+    // a LOT of workarounds here but is basically user.favorite({gameID})
     if (user) {
-      user.favoriteGames.push(gameId);
-      await user.save();
-    }
+      const isValidObjectId = mongoose.Types.ObjectId.isValid(gameId);
 
-    res.status(200).send('Starred!.');
+      if (isValidObjectId) {
+        const newGameId = new mongoose.Types.ObjectId(gameId);
+        user.favoriteGames.push({ gameId: newGameId } as any);
+        await user.save();
+        res.status(200).send('Starred!');
+      } else {
+        res.status(400).send('Invalid gameId.');
+      }
+    } else {
+      res.status(404).send('User not found.');
+    }
   } catch (error) {
-    res.status(500).send('error favoriting the game: ' + error);
+    res.status(500).send('Error favoriting the game: ' + error);
   }
 });
 
@@ -261,6 +270,32 @@ app.patch('/api/games/:postId/comments/:commentId', async (req: any, res: any) =
     res.status(200).json(updatedComment);
   } catch (error: any) {
     res.status(500).send(error.message);
+  }
+});
+
+app.patch('/api/users/:user/games/:game/medal', async (req: any, res: any) => {
+  const userId = req.params.user;
+  const gameId = req.params.game;
+  const medal = req.body.medal as number;
+
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (user) {
+      //if any is missing favorite.medal cant work
+      const favorite: any = user.favoriteGames.find((fav: any) => fav.gameId.toString() === gameId);
+      if (favorite) {
+        favorite.medal = medal;
+        await user.save();
+        res.status(200).send('Medal updated!');
+      } else {
+        res.status(404).send('Favorite game not found');
+      }
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    res.status(500).send('Error updating the medal: ' + error);
   }
 });
 

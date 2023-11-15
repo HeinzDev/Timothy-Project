@@ -25,7 +25,12 @@ const userSchema = new Schema<User>({
     required: true,
   },
   icon: String,
-  favoriteGames: [{ type: Schema.Types.ObjectId, ref: 'Games' }],
+  favoriteGames: [
+    {
+      gameId: { type: Schema.Types.ObjectId, ref: 'Games' },
+      medal: { type: Number, required: true },
+    },
+  ],
   currentGame: String,
   currentGameCover: String,
 });

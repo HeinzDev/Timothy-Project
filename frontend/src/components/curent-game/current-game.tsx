@@ -45,7 +45,7 @@ const CurrentGame = ({ visible, onClose, games, reload }: CurrentGameProps) => {
   const handleButton = async () => {
     try {
       if (selectedGame.name && selectedGame.image) {
-        await axios.patch(`http://localhost:8080/api/users/${_id}`, {
+        await axios.patch(`https://timothy-project.onrender.com/api/users/${_id}`, {
           currentGame: selectedGame.name,
           currentGameCover: selectedGame.image,
         });

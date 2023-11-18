@@ -28,7 +28,7 @@ const userSchema = new Schema<User>({
   favoriteGames: [
     {
       gameId: { type: Schema.Types.ObjectId, ref: 'Games' },
-      medal: { type: Number, required: true },
+      medal: { type: Number },
     },
   ],
   currentGame: String,

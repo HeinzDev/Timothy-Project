@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
 import Card from '../card/card';
 import GlobalStyles from '../../styled-components/GlobalStyles';
+import CurrentGame from '../curent-game/current-game';
+import { useAuth } from '../../Context/AuthContext';
 
 interface ProfileProps {
   userId: string;
@@ -13,9 +15,15 @@ interface UserData {
   name: string;
   username: string;
   icon: string;
-  favoriteGames: Games[];
+  favoriteGames: FavoriteGame[];
   currentGame: string;
   currentGameCover: string;
+}
+
+interface FavoriteGame {
+  gameId: string;
+  _id: string;
+  medal?: number;
 }
 
 interface Games {
@@ -31,9 +39,13 @@ interface Games {
 const ProfilePage = ({ userId }: ProfileProps) => {
   const [userData, setUserData] = useState<UserData>();
   const [gamesData, setGamesData] = useState<Games[]>();
+  const [currentGameEditForm, setcurrentGameEditForm] = useState<boolean>(false);
+  const [favoriteGameEditForm, setFavoriteGameEditForm] = useState<boolean>(false);
   const [opacity, setOpacity] = useState(0);
-  const [opacityEditIcon, setOpacityEditIcon] = useState(0);
+  const [CurrentGamesEditIcon, setCurrentGamesEditIcon] = useState(0);
+  const [favoriteGamesEditIcon, setFavoriteGamesEditIcon] = useState(0);
   const navigate = useNavigate();
+  const { _id } = useAuth();
 
   const getUserData = async () => {
     try {
@@ -51,31 +63,29 @@ const ProfilePage = ({ userId }: ProfileProps) => {
       if (userId) {
         const response = await axios.get<Games[]>(`https://timothy-project.onrender.com/api/games`);
         setGamesData(response.data);
-        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleMouseOver = () => {
-    setOpacityEditIcon(1);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacityEditIcon(0);
-  };
-
   useEffect(() => {
     setTimeout(() => setOpacity(1), 1000);
     getUserData();
-
     getGamesData();
   }, []);
 
   return (
     <>
       <GlobalStyles />
+
+      <CurrentGame
+        visible={currentGameEditForm}
+        onClose={() => setcurrentGameEditForm(!currentGameEditForm)}
+        games={gamesData ? gamesData : []}
+        reload={() => getUserData()}
+      />
+
       <div className="back-home" onClick={() => navigate('/')}>
         <div className="home-wrapper">
           <i className="fa-solid fa-chevron-left"></i>
@@ -94,24 +104,61 @@ const ProfilePage = ({ userId }: ProfileProps) => {
           </div>
           <div className="current-game-section">
             <p className="exo-font section-text">Current Playing</p>
-            <div className="current-playing" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-              {/* overwrite these with currentGame and currentGameCover */}
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn8VH0P94J1cz2Z5Knq2ukBDbKOhlxU4075pYgyRZsi5SeXEjU1I9C48sFYPhXCG3CdPY&usqp=CAU" />
-              <h3 className="exo-font">The killer is Dead</h3>
-              <i className="fa-solid fa-compact-disc disc"></i>
-              <i className="fa-solid fa-edit edit" style={{ opacity: opacityEditIcon }}></i>
+            <div
+              className="current-playing"
+              onMouseOver={() => setCurrentGamesEditIcon(1)}
+              onMouseLeave={() => setCurrentGamesEditIcon(0)}
+            >
+              {!!userData.currentGame && (
+                <>
+                  <img src={userData.currentGameCover} alt="" />
+                  <h3 className="exo-font">{userData.currentGame}</h3>
+                  <i className="fa-solid fa-compact-disc disc"></i>
+                </>
+              )}
+              {_id && (
+                <i
+                  className="fa-solid fa-edit edit"
+                  style={{ opacity: CurrentGamesEditIcon }}
+                  onClick={() => setcurrentGameEditForm(true)}
+                ></i>
+              )}
             </div>
           </div>
-
-          {/* placeholders */}
           <div className="favorite-games-section ">
             <p className="exo-font section-text">Favorite Games</p>
-            <div className="favorite-games">
-              {gamesData?.map(({ name, image, _id }) => (
-                <Link to={`/Game/${_id}`} key={_id}>
-                  <Card name={name} image={image} comments={0} />
-                </Link>
-              ))}
+            <div
+              className="favorite-games"
+              onMouseOver={() => setFavoriteGamesEditIcon(1)}
+              onMouseLeave={() => setFavoriteGamesEditIcon(0)}
+            >
+              {_id && (
+                <i
+                  className="fa-solid fa-edit edit"
+                  style={{ opacity: favoriteGamesEditIcon }}
+                  onClick={() => setFavoriteGameEditForm(true)}
+                ></i>
+              )}
+              {userData.favoriteGames && userData.favoriteGames.length > 0 && gamesData ? (
+                userData.favoriteGames.map(({ gameId }) => {
+                  const favoriteGame = gamesData.find((game) => game._id === gameId);
+                  if (favoriteGame) {
+                    return (
+                      <Link to={`/Game/${favoriteGame._id}`} key={favoriteGame._id}>
+                        <Card name={favoriteGame.name} image={favoriteGame.image} comments={0} />
+                      </Link>
+                    );
+                  }
+                  return null;
+                })
+              ) : (
+                <div
+                  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+                >
+                  <img src="/empty.png" alt="" className="empty" />
+                  <h3 className="exo-font">(Empty)</h3>
+                </div>
+              )}
             </div>
           </div>
         </div>

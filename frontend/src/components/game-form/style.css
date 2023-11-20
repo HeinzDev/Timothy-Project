@@ -24,7 +24,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #444;
+  background-color: #282828;
   border: 1px solid #777;
   border-radius: 10px;
   gap: 1em;
@@ -39,8 +39,8 @@
 }
 
 .form-input input {
-  background-color: #777;
-  border: 5px solid #777;
+  background-color: #4c4c4c;
+  border: 5px solid #4c4c4c;
   border-radius: 8px;
   color: white;
 }
@@ -64,7 +64,7 @@
   cursor: pointer;
   width: 50%;
   height: 2.5em;
-  background-color: #777;
+  background-color: #3e3e3e;
   border-radius: 8px;
   color: white;
   border: 2px solid #AAA;

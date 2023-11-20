@@ -1,70 +1,91 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './style.css';
 import { useToaster } from '../../Context/ToasterContext';
+import GlobalStyles from '../../styled-components/GlobalStyles';
+import axios from 'axios';
 
-interface GameFormProps {
+interface CurrentGameProps {
   visible: boolean;
   onClose: () => void;
   reloadGames: () => void;
 }
 
-const RemoveGameForm: React.FC<GameFormProps> = ({ visible, onClose, reloadGames }) => {
+interface Games {
+  name: string;
+  image: string;
+  _id: string;
+}
+
+const RemoveGameForm: React.FC<CurrentGameProps> = ({ visible, onClose, reloadGames }: CurrentGameProps) => {
+  const [games, setGames] = useState<Games[]>([]);
+  const [selectedGame, setSelectedGame] = useState<Games>({ name: '', image: '', _id: '' });
+  const [selectedGames, setSelectedGames] = useState<string[]>([]);
   const showToaster = useToaster();
-  const sendGames = async () => {
+
+  const getGames = async () => {
     try {
-      const nameInput = document.getElementById('name') as HTMLInputElement | null;
+      const response = await axios.get<Games[]>(`https://timothy-project.onrender.com/api/games`);
+      setGames(response.data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-      if (nameInput) {
-        const name = nameInput.value;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+    getGames();
+  }, []); // Corrigi a chamada useEffect
 
-        const response = await axios.get('https://timothy-project.onrender.com/api/games');
-        const games = response.data;
+  const handleSelect = (gameId: string, name: string, image: string) => {
+    console.log("gameid:"+gameId);
+    const index = selectedGames.indexOf(gameId);
+    if (index === -1) {
+      setSelectedGames([gameId]);
+      setSelectedGame({ name, image, _id: gameId });
+    } else {
+      setSelectedGames([]);
+      setSelectedGame({ name: '', image: '', _id: '' });
+    }
+  };
 
-        console.log(response.data);
-
-        const gameToDelete = games.find((game: any) => game.name === name);
-
-        //deleting all comments
-        if (gameToDelete) {
-          const commentsResponse = await axios.get(
-            `https://timothy-project.onrender.com/api/games/${gameToDelete._id}/comments`
-          );
-          const comments = commentsResponse.data;
-
-          for (const comment of comments) {
-            await axios.delete(
-              `https://timothy-project.onrender.com/api/games/${gameToDelete._id}/comments/${comment._id}`
-            );
-          }
-
-          await axios.delete(`https://timothy-project.onrender.com/api/games/${gameToDelete._id}`);
-          nameInput.value = '';
-          onClose();
-          reloadGames();
-        } else {
-          showToaster('Game not found');
-          onClose();
-        }
+  const handleButton = async () => {
+    try {
+      if (selectedGame.name && selectedGame.image) {
+        await axios.delete(`https://timothy-project.onrender.com/api/games/${selectedGame._id}`);
+        showToaster('Current Game updated successfully!');
+        reloadGames();
+        onClose();
+      } else {
+        showToaster('Please select a game before updating.');
       }
     } catch (error) {
-      showToaster('Failed to find/delete game.');
-      onClose();
+      showToaster('Failed to update the Current Game');
+      console.log(error);
     }
   };
 
   return (
-    <div className={`game-form ${visible ? 'show' : ''}`}>
-      <div className="form-content">
-        <div className="close-button" onClick={onClose}>
-          <i className="fa-solid fa-x"></i>
-        </div>
-        <label>Game Name(Complete)</label>
-        <input id="name" type="text" />
-
-        <button className="submit" onClick={sendGames}>
-          Deletar!
-        </button>
+    <div className={`current-game-form ${visible ? 'show' : ''}`}>
+      <GlobalStyles />
+      <div className="delete-games-form-wrapper">
+        <i className="fa-solid fa-close close" onClick={onClose}></i>
+        {games?.map(({ name, image, _id }) => (
+          <div
+            key={_id}
+            className={`game-item ${selectedGames.includes(_id) ? 'delete-select' : ''}`}
+            onClick={() => handleSelect(_id, name, image)}
+          >
+            <img src={image} alt="" />
+            <p className="exo-font">{name}</p>
+          </div>
+        ))}
       </div>
+      <button className="delete-game-button" onClick={handleButton}>
+          Delete!
+      </button>
     </div>
   );
 };

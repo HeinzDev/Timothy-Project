@@ -36,7 +36,6 @@ const GameForm = ({ visible, onClose, reloadGames }: GameFormProps) => {
 
         setName('');
         setImage('');
-
         onClose();
       }
     } catch (error) {

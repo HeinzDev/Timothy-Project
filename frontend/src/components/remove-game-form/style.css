@@ -1,4 +1,15 @@
-.game-form {
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+
+.current-game-form {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,28 +25,63 @@
   transition: opacity 0.3s;
 }
 
-.game-form.show {
+.current-game-form.show {
   display: flex;
 }
 
-.form-content {
+.close {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+}
+
+.delete-games-form-wrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
   padding: 3em;
-  background-color: #444;
+  background-color: #282828;
   border: 1px solid #777;
   border-radius: 10px;
   gap: 1em;
+  width: 440px;
+  height: 600px;
+  overflow: scroll;
 }
 
-.form-content input {
-  background-color: #777;
-  border: 5px solid #777;
-  border-radius: 8px;
+.game-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1em;
+  width: 100px;
+  height: 200px;
+  background-color: #212121;
+  border-radius: 10px;
+  gap: 1em;
   color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.delete-select {
+  border: 4px solid rgb(202, 62, 62);
+}
+
+.game-item img {
+  border-radius: 10%;
+  max-height: 100px;
+  aspect-ratio: 9/12;
 }
 
 .close-button {
@@ -43,10 +89,11 @@
   top: 10px;
   right: 10px;
   border-radius: 50%;
-  padding: 5px 10px;
+  padding: 2px 7px;
+  aspect-ratio: 1/1;
 }
 
-.close-button:hover {
+.close-button:hover i {
   background: #555;
   cursor: pointer;
 }
@@ -63,4 +110,22 @@
 
 .submit:active {
   transform: scale(0.98);
+}
+
+.delete-game-button {
+  margin-top: 10px;
+  padding: 1em 1em;
+  background-color: rgb(167, 29, 29);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom:30px;
+  right: 48%;
+  left: 48%;
+}
+
+.delete-game-button:active {
+  background-color: rgb(116, 16, 16);
 }

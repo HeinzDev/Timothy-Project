@@ -1,23 +1,55 @@
-# Timothy-Project
+**Português (Brasil)** | [English version](README_en.md)
 
-This is a project to create an shared list of games to play! To use, first access the [api address](https://timothy-project.onrender.com) to intialize the backend!
+# Projeto Timothy
 
-## Running the project locally
+Bem-vindo ao Projeto Timothy, uma aplicação ReactJS projetada para criar uma lista compartilhada de jogos entre amigos. A plataforma permite aos usuários adicionar comentários, cada um acompanhado por um perfil único e diversas personalidades, tudo apresentado com um design moderno. O backend é alimentado pelo Node.js com um cluster de banco de dados MongoDB.
 
-`npm install` on both projects.
+## Resumo
+- [Executando o Projeto Localmente](#executando-o-projeto-localmente)
+- [Deploy](#deploy)
+  - [API](#api)
+  - [Aplicação](#aplicação)
+- [Contribuindo](#contribuindo)
+- [Criador](#criador)
 
-`npm run build` on both projects.
+## Executando o Projeto Localmente
 
-`npm run start` on the backend file.
+Para executar o projeto localmente, siga estes passos:
 
-And it's done!
+1. Execute `npm install` em ambos os diretórios do projeto.
+2. Execute `npm run build` em ambos os projetos.
+3. Execute `npm run start` no projeto do backend.
 
-# Deploy
+E pronto!
 
+## Deploy
+#### Vercel:
+[![Vercel](https://vercel.com/button)](https://timothy-project.vercel.app/)
+
+#### Netlify: 
+- **Link**: https://timothy-project.netlify.app/
+
+**Nota:** O deploy na Vercel é considerado o principal, enquanto o deploy no Netlify é secundário.
 ## API
-**Render (api)** : [timothy-project.onrender.com](https://timothy-project.onrender.com)
+**Render (API)**: [timothy-project.onrender.com](https://timothy-project.onrender.com)
+## Contribuindo
 
-## Application
-**Vercel** : [vercel.timothy-project.app](https://timothy-project.vercel.app/)
+Se você deseja contribuir para o projeto, siga estes passos:
 
-**Netlify** : [timothy-project.netlify.app](https://timothy-project.netlify.app)
+1. Faça um fork do repositório.
+2. Crie um novo branch para sua funcionalidade: `git checkout -b nome-da-funcionalidade`.
+3. Faça commit das suas alterações: `git commit -m 'Adicione alguma funcionalidade'`.
+4. Faça push para o branch: `git push origin nome-da-funcionalidade`.
+5. Envie uma solicitação pull.
+
+## Criador
+
+<div id="header" align="center">
+  <a href="https://github.com/HeinzDev/">
+    <img src="https://i.imgur.com/RtsYtRt.png" width="100"/>
+  </a>
+  <a href="https://github.com/HeinzDev/">
+    <h3>HeinzDev</h3>  
+  </a>
+</div>
+

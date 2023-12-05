@@ -72,7 +72,7 @@ const Comments: React.FC<CommentProps> = ({ originalPoster, text, postId }) => {
         />
       </div>
       <div className="comment-data">
-        <label>{opData ? opData.name : 'unknown'}</label>
+        <label>{opData ? opData.name : 'private'}</label>
         <p>{text}</p>
       </div>
     </div>

@@ -5,6 +5,7 @@
 Bem-vindo ao Projeto Timothy, uma aplicação ReactJS projetada para criar uma lista compartilhada de jogos entre amigos. A plataforma permite aos usuários adicionar comentários, cada um acompanhado por um perfil único e diversas personalidades, tudo apresentado com um design moderno. O backend é alimentado pelo Node.js com um cluster de banco de dados MongoDB.
 
 ## Resumo
+
 - [Executando o Projeto Localmente](#executando-o-projeto-localmente)
 - [Deploy](#deploy)
   - [API](#api)
@@ -23,15 +24,23 @@ Para executar o projeto localmente, siga estes passos:
 E pronto!
 
 ## Deploy
+
 #### Vercel:
+
 [![Vercel](https://vercel.com/button)](https://timothy-project.vercel.app/)
 
-#### Netlify: 
+- **Link**: https://timothy-project.vercel.app/
+
+#### Netlify:
+
 - **Link**: https://timothy-project.netlify.app/
 
 **Nota:** O deploy na Vercel é considerado o principal, enquanto o deploy no Netlify é secundário.
+
 ## API
+
 **Render (API)**: [timothy-project.onrender.com](https://timothy-project.onrender.com)
+
 ## Contribuindo
 
 Se você deseja contribuir para o projeto, siga estes passos:
@@ -52,4 +61,3 @@ Se você deseja contribuir para o projeto, siga estes passos:
     <h3>HeinzDev</h3>  
   </a>
 </div>
-

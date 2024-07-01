@@ -4,12 +4,14 @@
 
 Bem-vindo ao Projeto Timothy, uma aplicação ReactJS projetada para criar uma lista compartilhada de jogos entre amigos. A plataforma permite aos usuários adicionar comentários, cada um acompanhado por um perfil único e diversas personalidades, tudo apresentado com um design moderno. O backend é alimentado pelo Node.js com um cluster de banco de dados MongoDB.
 
+
+<p align="center"><img src="https://i.imgur.com/Yr5mNYS.jpeg"></p>
+
 ## Resumo
 
 - [Executando o Projeto Localmente](#executando-o-projeto-localmente)
 - [Deploy](#deploy)
   - [API](#api)
-  - [Aplicação](#aplicação)
 - [Contribuindo](#contribuindo)
 - [Criador](#criador)
 
